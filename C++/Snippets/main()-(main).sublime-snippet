@@ -1,7 +1,6 @@
 <snippet>
 	<description>main()</description>
-	<content><![CDATA[int main(int argc, char const${TM_C_POINTER: *}argv[])
-{
+	<content><![CDATA[int main(int argc, char const${TM_C_POINTER: *}argv[]) {
 	${0:/* code */}
 	return 0;
 }]]></content>

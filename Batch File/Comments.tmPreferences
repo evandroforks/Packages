@@ -11,13 +11,13 @@
 				<key>name</key>
 				<string>TM_COMMENT_START</string>
 				<key>value</key>
-				<string>rem </string>
+				<string>:: </string>
 			</dict>
 			<dict>
 				<key>name</key>
 				<string>TM_COMMENT_START_2</string>
 				<key>value</key>
-				<string>:: </string>
+				<string>rem </string>
 			</dict>
 		</array>
 	</dict>

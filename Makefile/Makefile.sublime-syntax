@@ -13,6 +13,7 @@ scope: source.makefile
 
 file_extensions:
   - make
+  - makedefs
   - GNUmakefile
   - Makefile
   - Makefile.am

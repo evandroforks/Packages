@@ -7,11 +7,13 @@ scope: source.c++
 file_extensions:
   - cpp
   - cc
+  - ccg
   - cp
   - cxx
   - c++
   - C
   - h
+  - hg
   - hh
   - hpp
   - hxx
@@ -279,16 +281,44 @@ contexts:
     - match: '(?={{path_lookahead}}\s*<)'
       push: global-modifier
     # Take care of comments just before a function definition.
-    - match: /\*
-      scope: punctuation.definition.comment.c
+    - match: /\*\*/
+      scope: comment.block.documentation.c++ punctuation.definition.comment.c++
+      push:
+        - match: \s*(?=\w)
+          set: global-modifier
+        - match: ""
+          pop: true
+    - match: /\*\*/
+      scope: comment.block.documentation.c punctuation.definition.comment.c
+
+    - match: /\*\[\[\[cog
+      scope: comment.block.c++ punctuation.definition.comment.c++
+      embed: scope:source.python
+      embed_scope: comment.block.c++
+      escape: '\]\]\]\*/'
+      escape_captures:
+        0: comment.block.c++ punctuation.definition.comment.c++
+    - match: /\*\*
+      scope: punctuation.definition.comment.c++
       push:
         - - match: \s*(?=\w)
             set: global-modifier
           - match: ""
             pop: true
-        - - meta_scope: comment.block.c
+        - - meta_scope: comment.block.documentation.c++
           - match: \*/
-            scope: punctuation.definition.comment.c
+            scope: punctuation.definition.comment.c++
+            pop: true
+    - match: /\*
+      scope: punctuation.definition.comment.c++
+      push:
+        - - match: \s*(?=\w)
+            set: global-modifier
+          - match: ""
+            pop: true
+        - - meta_scope: comment.block.c++
+          - match: \*/
+            scope: punctuation.definition.comment.c++
             pop: true
           - match: ^\s*(\*)(?!/)
             captures:
@@ -2061,6 +2091,13 @@ contexts:
           scope: keyword.operator.variadic.c++
         - match: '(?=\))'
           pop: true
+        - match: /\*\*/
+          scope: comment.block.documentation.c++ punctuation.definition.comment.c++
+        - match: (/\*\*).*(\*/)
+          scope: comment.block.documentation.c++
+          captures:
+            1: punctuation.definition.comment.c++
+            2: punctuation.definition.comment.c++
         - match: (/\*).*(\*/)
           scope: comment.block.c++
           captures:
@@ -2072,6 +2109,13 @@ contexts:
     - include: scope:source.c#preprocessor-comments
     - match: '\.\.\.'
       scope: keyword.operator.variadic.c++
+    - match: /\*\*/
+      scope: comment.block.documentation.c++ punctuation.definition.comment.c++
+    - match: (/\*\*).*(\*/)
+      scope: comment.block.documentation.c++
+      captures:
+        1: punctuation.definition.comment.c++
+        2: punctuation.definition.comment.c++
     - match: (/\*).*(\*/)
       scope: comment.block.c++
       captures:

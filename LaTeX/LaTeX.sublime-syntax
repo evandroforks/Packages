@@ -7,6 +7,13 @@ scope: text.tex.latex
 file_extensions:
   - tex
   - ltx
+  - bbx
+  - cbx
+  - ibx
+  - dtx
+  - ins
+  - fd
+  - def
 
 first_line_match: |-
   (?xi:
