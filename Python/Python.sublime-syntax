@@ -22,6 +22,8 @@ file_extensions:
   - vpy
   - smk
   - wscript
+  - AMBuilder
+  - AMBuildScript
   - bazel
   - bzl
 

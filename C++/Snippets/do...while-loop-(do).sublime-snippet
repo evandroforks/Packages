@@ -1,7 +1,6 @@
 <snippet>
 	<description>Do While Loop</description>
-	<content><![CDATA[do
-{
+	<content><![CDATA[do {
 	${0:/* code */}
 } while (${1:/* condition */});]]></content>
 	<tabTrigger>do</tabTrigger>

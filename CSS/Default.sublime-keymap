@@ -11,7 +11,7 @@
 		]
 	},
 	// Move the cursor to prevent adding a duplicated semicolon.
-	{ "keys": [";"], "command": "move", "args": {"by": "characters", "forward": true}, "context":
+	{ "keys": [";"], "command": "insert_snippet", "args": {"contents": ";"}, "context":
 		[
 			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
 			{ "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
@@ -20,9 +20,17 @@
 		]
 	},
 	// Delete both the colon on the left and a semicolon on the right.
+	{ "keys": [";"], "command": "move", "args": {"by": "characters", "forward": true}, "context":
+		[
+			{ "key": "setting.auto_match_enabled_move", "operator": "equal", "operand": true },
+			{ "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+			{ "key": "selector", "operator": "equal", "operand": "source.css - meta.selector.css", "match_all": true },
+			{ "key": "following_text", "operator": "regex_contains", "operand": "^;", "match_all": true }
+		]
+	},
 	{ "keys": ["backspace"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Left Right.sublime-macro"}, "context":
 		[
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+			{ "key": "setting.auto_match_enabled_delete", "operator": "equal", "operand": true },
 			{ "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
 			{ "key": "selector", "operator": "equal", "operand": "source.css - meta.selector.css", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": ":$", "match_all": false },
@@ -54,7 +62,7 @@
 	},
 	{ "keys": ["backspace"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Left Right.sublime-macro"}, "context":
 		[
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+			{ "key": "setting.auto_match_enabled_delete", "operator": "equal", "operand": true },
 			{ "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
 			{ "key": "selector", "operator": "equal", "operand": "source.css - meta.selector.css", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "\\{ $", "match_all": true },

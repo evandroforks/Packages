@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[<details>
+<p>
+
+```
+$TM_SELECTED_TEXT$1
+```
+</p>
+</details><br>]]></content>
+  <description>Wrap On Details Tag</description>
+  <scope>text</scope>
+  <tabTrigger>details</tabTrigger>
+</snippet>

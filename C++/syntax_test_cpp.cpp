@@ -181,6 +181,11 @@ int main(){
     /*          ^^ keyword.operator.arithmetic */
 }
 
+/*[[[cog
+maxParams = 24
+/*          ^^ source.c++ comment.block.c++ source.python constant.numeric.integer.decimal.python */
+]]]*/
+
 /////////////////////////////////////////////
 // Preprocessor
 /////////////////////////////////////////////
@@ -948,16 +953,25 @@ void f()
     /* ^ - variable.function */
 
     x /**/ . /**/ foo <5> /**/ () /**/ ;
-    /*^^^^ comment.block */
-    /*     ^ punctuation.accessor */
+    /*^^^^ comment.block.documentation */
+    /*     ^ punctuation.accessor - comment.block.documentation */
     /*            ^^^ meta.method-call variable.function */
     /*               ^ meta.method-call - variable.function */
+<<<<<<< HEAD
     /*                ^ meta.method-call punctuation.definition.generic.begin */
     /*                  ^ meta.method-call punctuation.definition.generic.end */
     /*                   ^ meta.method-call - punctuation - comment.block */
     /*                    ^^^^ meta.method-call comment.block */
     /*                        ^ meta.method-call - comment.block - punctuation */
     /*                         ^^ meta.method-call punctuation - comment.block */
+=======
+    /*                ^ meta.method-call punctuation.section.generic.begin */
+    /*                  ^ meta.method-call punctuation.section.generic.end */
+    /*                   ^ meta.method-call - punctuation - comment.block.documentation */
+    /*                    ^^^^ meta.method-call comment.block.documentation */
+    /*                        ^ meta.method-call - comment.block.documentation - punctuation */
+    /*                         ^^ meta.method-call punctuation - comment.block.documentation */
+>>>>>>> master
     /*                           ^ - meta.method-call */
 };
 

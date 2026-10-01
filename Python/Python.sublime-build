@@ -4,6 +4,7 @@
 	"selector": "source.python",
 	"interactive": true,
 
+	"quiet": true,
 	"env": {"PYTHONIOENCODING": "utf-8"},
 
 	"windows": {

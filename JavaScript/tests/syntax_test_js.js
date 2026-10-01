@@ -1004,10 +1004,15 @@ const test = ({a, b, c=()=>({active:false}) }) => {};
 ({
     a = {},
 //    ^ keyword.operator.assignment
+<<<<<<< HEAD
 //      ^^ punctuation.section.mapping
 //        ^ punctuation.separator.parameter - keyword.operator.comma
+=======
+//      ^^ punctuation.section.block
+//        ^ punctuation.separator.comma - keyword.operator.comma
+>>>>>>> master
     b,
-//   ^ punctuation.separator.parameter - keyword.operator.comma
+//   ^ punctuation.separator.comma - keyword.operator.comma
 }) => null;
 // ^^ keyword.declaration.function.arrow
 

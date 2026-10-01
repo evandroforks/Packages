@@ -10,6 +10,13 @@ extends: TeX.sublime-syntax
 file_extensions:
   - tex
   - ltx
+  - bbx
+  - cbx
+  - ibx
+  - dtx
+  - ins
+  - fd
+  - def
 
 first_line_match: |-
   (?xi:
