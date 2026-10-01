@@ -58,6 +58,7 @@ portalockerfile
 pushdownparser
 python-pywin32
 sublime_lib
+sublime_aio/
 wcmatch
 
 0_settings_loader
@@ -260,6 +261,6 @@ VBScript
 ViewSettingsFreely
 VimL
 Whitespace
-WordCount
+WordingStatus
 WrapPlus
 X86Assembly
