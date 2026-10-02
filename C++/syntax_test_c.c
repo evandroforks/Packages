@@ -22,19 +22,19 @@
  /*^^^^^^^^^ comment.line.documentation.c - punctuation */
 
 /// Comment ///
-/* <- comment.line.documentation.c punctuation.definition.comment.c */
- /* <- comment.line.documentation.c punctuation.definition.comment.c */
-  /* <- comment.line.documentation.c punctuation.definition.comment.c */
- /*^^^^^^^^^ comment.line.documentation.c - punctuation */
- /*         ^^^ comment.line.documentation.c punctuation.definition.comment.c */
+/* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+  /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /*^^^^^^^^^ comment.line.documentation.triple-slash.c - punctuation */
+ /*         ^^^ comment.line.documentation.triple-slash.c - punctuation */
 
 //// Comment ////  
-/* <- comment.line.double-slash.c punctuation.definition.comment.c */
- /* <- comment.line.double-slash.c punctuation.definition.comment.c */
-/*^^ comment.line.double-slash.c punctuation.definition.comment.c */
-/*  ^^^^^^^^^ comment.line.double-slash.c - punctuation */
- /*          ^^^^ comment.line.double-slash.c punctuation.definition.comment.c */
-/*               ^^ comment.line.double-slash.c - punctuation */
+/* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+/*^ comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+/*  ^^^^^^^^^ comment.line.documentation.triple-slash.c - punctuation */
+ /*          ^^^^ comment.line.documentation.triple-slash.c - punctuation */
+/*               ^^ comment.line.documentation.triple-slash.c - punctuation */
 
 /* =Banner= */
 /* <- comment.block.banner.c punctuation.definition.comment.begin.c */
@@ -229,7 +229,7 @@ struct foo {
 
 /*[[[cog
 maxParams = 24
-/*          ^^ source.c comment.block.c source.python constant.numeric.integer.decimal.python */
+/*          ^^ source.c comment.block.c source.python meta.number.integer.decimal.python constant.numeric.value.python */
 ]]]*/
 
 #define EXTTS_BUFSIZE (PTP_BUF_TIMESTAMPS /* comment block */ * sizeof(struct ptp_extts_event)) // comment line

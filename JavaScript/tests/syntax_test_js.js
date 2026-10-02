@@ -1007,7 +1007,7 @@ const test = ({a, b, c=()=>({active:false}) }) => {};
 //      ^^ punctuation.section.mapping
 //        ^ punctuation.separator.parameter - keyword.operator.comma
     b,
-//   ^ punctuation.separator.comma - keyword.operator.comma
+//   ^ punctuation.separator.parameter.function.js - keyword.operator.comma
 }) => null;
 // ^^ keyword.declaration.function.arrow
 

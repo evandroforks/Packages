@@ -2267,10 +2267,12 @@ FROM TableName
 |^^ punctuation.definition.raw.code-fence.begin.markdown
 |  ^^^^ constant.other.language-name.markdown
 [section.name]
-|^^^^^^^^^^^^^ markup.raw.code-fence.toml.markdown-gfm source.toml meta.section.toml meta.brackets.toml
-|^^^^^^^^^^^^ entity.name.section.toml
-|       ^ punctuation.accessor.dot.toml
-|            ^ punctuation.section.brackets.end.toml
+|^^^^^^^^^^^^^ markup.raw.code-fence.toml.markdown-gfm source.toml
+| <- punctuation.definition.table.begin.toml
+|^^^^^^^ entity.name.table.toml
+|       ^ punctuation.separator.table.toml
+|        ^^^^ entity.name.table.toml
+|            ^ punctuation.definition.table.end.toml
 ```
 | <- meta.code-fence.definition.end.markdown-gfm punctuation.definition.raw.code-fence.end.markdown
 |^^ meta.code-fence.definition.end.markdown-gfm punctuation.definition.raw.code-fence.end.markdown

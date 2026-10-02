@@ -135,7 +135,7 @@ contexts:
         1: punctuation.definition.comment.python
         2: punctuation.section.raw.begin.python
         3: constant.other.lanugage-name.python
-      embed: scope:source.toml.embedded.python#toml
+      embed: scope:source.toml.embedded.python#main
       embed_scope: comment.line.number-sign.python source.toml.embedded.python
       escape: ^(?:\s*(#)\s+(///)$\n?|(?!\s*#))
       escape_captures:

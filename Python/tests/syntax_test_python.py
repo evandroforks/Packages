@@ -24,11 +24,13 @@
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.toml.embedded.python
 # dependencies = [
 #     "requests",
-#     ^^^^^^^^^^ source.toml.embedded.python meta.mapping.value.toml meta.sequence.array.toml meta.string.toml string.quoted.double.toml
+#     ^^^^^^^^^^ source.toml.embedded.python string.quoted.double.basic.toml
 # ]
 #
 # [tools.black]
-# ^^^^^^^^^^^^^ comment.line.number-sign.python source.toml.embedded.python meta.section.toml meta.brackets.toml
+# ^^^^^^^^^^^^^ comment.line.number-sign.python source.toml.embedded.python
+# ^ punctuation.definition.table.begin.toml
+#  ^^^^^ entity.name.table.toml
 #
 # ///
 # <- comment.line.number-sign.python punctuation.definition.comment.python

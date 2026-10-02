@@ -22,19 +22,19 @@
  /*^^^^^^^^^ comment.line.documentation.c - punctuation */
 
 /// Comment ///
-/* <- comment.line.documentation.c punctuation.definition.comment.c */
- /* <- comment.line.documentation.c punctuation.definition.comment.c */
-  /* <- comment.line.documentation.c punctuation.definition.comment.c */
- /*^^^^^^^^^ comment.line.documentation.c - punctuation */
- /*         ^^^ comment.line.documentation.c punctuation.definition.comment.c */
+/* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+  /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /*^^^^^^^^^ comment.line.documentation.triple-slash.c - punctuation */
+ /*         ^^^ comment.line.documentation.triple-slash.c - punctuation */
 
 //// Comment ////  
-/* <- comment.line.double-slash.c punctuation.definition.comment.c */
- /* <- comment.line.double-slash.c punctuation.definition.comment.c */
-/*^^ comment.line.double-slash.c punctuation.definition.comment.c */
-/*  ^^^^^^^^^ comment.line.double-slash.c - punctuation */
- /*          ^^^^ comment.line.double-slash.c punctuation.definition.comment.c */
-/*               ^^ comment.line.double-slash.c - punctuation */
+/* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+/*^ comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+/*  ^^^^^^^^^ comment.line.documentation.triple-slash.c - punctuation */
+ /*          ^^^^ comment.line.documentation.triple-slash.c - punctuation */
+/*               ^^ comment.line.documentation.triple-slash.c - punctuation */
 
 /* =Banner= */
 /* <- comment.block.banner.c punctuation.definition.comment.begin.c */
@@ -183,7 +183,7 @@ int main(){
 
 /*[[[cog
 maxParams = 24
-/*          ^^ source.c++ comment.block.c++ source.python constant.numeric.integer.decimal.python */
+/*          ^^ source.c++ comment.block.c++ source.python meta.number.integer.decimal.python constant.numeric.value.python */
 ]]]*/
 
 /////////////////////////////////////////////
@@ -957,8 +957,8 @@ void f()
     /*     ^ punctuation.accessor - comment.block.documentation */
     /*            ^^^ meta.method-call variable.function */
     /*               ^ meta.method-call - variable.function */
-    /*                ^ meta.method-call punctuation.section.generic.begin */
-    /*                  ^ meta.method-call punctuation.section.generic.end */
+    /*                ^ meta.method-call punctuation.definition.generic.begin */
+    /*                  ^ meta.method-call punctuation.definition.generic.end */
     /*                   ^ meta.method-call - punctuation - comment.block.documentation */
     /*                    ^^^^ meta.method-call comment.block.documentation */
     /*                        ^ meta.method-call - comment.block.documentation - punctuation */

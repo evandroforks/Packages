@@ -23,19 +23,19 @@
  /*^^^^^^^^^ comment.line.documentation.c - punctuation */
 
 /// Comment ///
-/* <- comment.line.documentation.c punctuation.definition.comment.c */
- /* <- comment.line.documentation.c punctuation.definition.comment.c */
-  /* <- comment.line.documentation.c punctuation.definition.comment.c */
- /*^^^^^^^^^ comment.line.documentation.c - punctuation */
- /*         ^^^ comment.line.documentation.c punctuation.definition.comment.c */
+/* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+  /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /*^^^^^^^^^ comment.line.documentation.triple-slash.c - punctuation */
+ /*         ^^^ comment.line.documentation.triple-slash.c - punctuation */
 
 //// Comment ////  
-/* <- comment.line.double-slash.c punctuation.definition.comment.c */
- /* <- comment.line.double-slash.c punctuation.definition.comment.c */
-/*^^ comment.line.double-slash.c punctuation.definition.comment.c */
-/*  ^^^^^^^^^ comment.line.double-slash.c - punctuation */
- /*          ^^^^ comment.line.double-slash.c punctuation.definition.comment.c */
-/*               ^^ comment.line.double-slash.c - punctuation */
+/* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+/*^ comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+/*  ^^^^^^^^^ comment.line.documentation.triple-slash.c - punctuation */
+ /*          ^^^^ comment.line.documentation.triple-slash.c - punctuation */
+/*               ^^ comment.line.documentation.triple-slash.c - punctuation */
 
 /* =Banner= */
 /* <- comment.block.banner.c punctuation.definition.comment.begin.c */

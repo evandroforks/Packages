@@ -3177,7 +3177,7 @@ main = do
         }>
             function test() { console.log("js"); }
 --         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.quoted.quasi.haskell text.html.embedded.haskell source.js.embedded.html
---          ^^^^^^^^ keyword.declaration.function.js
+--          ^^^^^^^^ storage.type.function.js
 --                   ^^^^ entity.name.function.js
 --                          ^^^^^^^^^^^^^^^^^^^^^^ meta.function.js meta.block.js
 --                          ^ punctuation.section.block.begin.js

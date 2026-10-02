@@ -4,9 +4,9 @@
 #!^ meta.frontmatter.rust punctuation.section.frontmatter.begin.rust
 #! ^ meta.frontmatter.rust - punctuation
 [section]
-#! <- meta.frontmatter.rust source.toml.embedded.rust meta.section.toml meta.brackets.toml punctuation.section.brackets.begin.toml
+#! <- meta.frontmatter.rust source.toml.embedded.rust source.toml punctuation.definition.table.begin.toml
 key = "value"
-#! <- meta.frontmatter.rust source.toml.embedded.rust meta.mapping.key.toml meta.string.toml string.unquoted.toml
+#! <- meta.frontmatter.rust source.toml.embedded.rust source.toml meta.tag.key.toml entity.name.tag.toml
 ---
 #! <- meta.frontmatter.rust punctuation.section.frontmatter.end.rust
 #!^ meta.frontmatter.rust punctuation.section.frontmatter.end.rust
