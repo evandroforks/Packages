@@ -49,6 +49,7 @@ ptyprocess/*
 zz_packagesmanager_reenabler.py
 tests.py
 tests.sublime-commands
+Binary
 ObjectBeautifier
 Text
 
