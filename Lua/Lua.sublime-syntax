@@ -9,11 +9,13 @@ file_extensions:
 
 first_line_match: |-
   (?xi:
-    ^ \#! .* \blua\b                        # shebang
+    ^ \#! .* {{shebang_language}}           # shebang
   | ^ \s* -- .*? -\*- .*? \blua\b .*? -\*-  # editorconfig
   )
 
 variables:
+  shebang_language: \blua\b
+
   reserved_word: |-
     (?x:(?:
       and|break|do|elseif|else|end|false|for|function|goto|if|in|
@@ -27,7 +29,7 @@ variables:
   metamethod: |- # http://lua-users.org/wiki/MetatableEvents
     (?x:__(?:
       # special
-      index|newindex|call|tostring|len|i?pairs|gc
+      index|newindex|call|tostring|len|i?pairs|gc|close
       # math operators
       |unm|add|sub|mul|i?div|mod|pow|concat
       # bitwise operators
@@ -36,7 +38,7 @@ variables:
       |eq|lt|le
     ){{identifier_break}})
   # __metatable and __mode don't use functions
-  metaproperty: (?:__(?:metatable|mode){{identifier_break}})
+  metaproperty: (?:__(?:metatable|mode|name){{identifier_break}})
 
   identifier_start: '[A-Za-z_]'
   identifier_char: '[A-Za-z0-9_]'
@@ -52,6 +54,15 @@ variables:
 
   dec_exponent: (?:[Ee][-+]?\d*)
   hex_exponent: (?:[Pp][-+]?\d*)
+
+  doc_comment_tag: |-
+    (?x:@(?:
+      alias|async|author|class|classmod|copyright|deprecated|diagnostic|field
+      |fixme|function|generic|language|lfunction|license|local|module|nodiscard
+      |overload|param|raise|release|return|script|section|see|submodule|table
+      |todo|tparam|treturn|type|usage|vararg|version|warning|within
+    )\b)
+  doc_comment_custom_tag: (?:@\w+\b)
 
 contexts:
   main:
@@ -73,11 +84,37 @@ contexts:
   comments:
     - include: block-comments
     - include: line-comments
+    - include: merge-conflict-markers
 
   block-comments:
+    - match: --\[\[--
+      scope: punctuation.definition.comment.begin.lua
+      push: block-doc-comment-body
     - match: --\[(=*)\[
       scope: punctuation.definition.comment.begin.lua
       push: block-comment-body
+
+  block-doc-comment-body:
+    - meta_include_prototype: false
+    - meta_scope: comment.block.documentation.lua
+    - match: \]\]
+      scope: punctuation.definition.comment.end.lua
+      pop: 1
+    - match: ^\s*(@section)\s+(.*?\S)\s*(?=\]\]|$)
+      captures:
+        1: entity.name.tag.documentation.lua
+        2: entity.name.section.lua
+    - match: ^\s*(@param)(?:\[[\w=']*\])?\s+({{identifier}})
+      captures:
+        1: entity.name.tag.documentation.lua
+        2: variable.parameter.lua
+    - match: ^\s*({{doc_comment_tag}})
+      captures:
+        1: entity.name.tag.documentation.lua
+    - match: ^\s*({{doc_comment_custom_tag}})
+      captures:
+        1: entity.name.tag.documentation.custom.lua
+    - include: merge-conflict-markers
 
   block-comment-body:
     - meta_include_prototype: false
@@ -85,11 +122,48 @@ contexts:
     - match: \]\1\]
       scope: punctuation.definition.comment.end.lua
       pop: 1
+    - include: merge-conflict-markers
 
   line-comments:
+    - match: -{3,}
+      scope: comment.line.documentation.lua punctuation.definition.comment.lua
+      push: line-doc-comment-body
     - match: --
       scope: punctuation.definition.comment.lua
       push: line-comment-body
+
+  line-doc-comment-body:
+    - meta_include_prototype: false
+    - meta_scope: comment.line.documentation.lua
+    - match: \s*(@section)\s+(.*\S)\s*\n?
+      captures:
+        1: entity.name.tag.documentation.lua
+        2: entity.name.section.lua
+      set: maybe-line-doc-comment
+    - match: \s*(@param)(?:\[[\w=']*\])?\s+({{identifier}}).*\n?
+      captures:
+        1: entity.name.tag.documentation.lua
+        2: variable.parameter.lua
+      set: maybe-line-doc-comment
+    - match: \s*({{doc_comment_tag}}).*\n?
+      captures:
+        1: entity.name.tag.documentation.lua
+      set: maybe-line-doc-comment
+    - match: \s*({{doc_comment_custom_tag}}).*\n?
+      captures:
+        1: entity.name.tag.documentation.custom.lua
+      set: maybe-line-doc-comment
+    - match: .*\n?
+      set: maybe-line-doc-comment
+
+  maybe-line-doc-comment:
+    - match: ^\s*(?=--(?!\[(=*)\[))
+      set:
+        - match: -{2,}
+          scope: punctuation.definition.comment.lua
+          set: line-doc-comment-body
+    - match: ^
+      pop: 1
 
   line-comment-body:
     - meta_include_prototype: false
@@ -99,8 +173,9 @@ contexts:
 
   shebang:
     - meta_include_prototype: false
-    - match: ^\#!
-      scope: punctuation.definition.comment.lua
+    - match: ^\s*(\#!)
+      captures:
+        1: punctuation.definition.comment.lua
       set: shebang-body
     - match: ^|(?=\S)
       pop: 1
@@ -108,10 +183,28 @@ contexts:
   shebang-body:
     - meta_include_prototype: false
     - meta_scope: comment.line.shebang.lua
-    - match: \blua\b
+    - match: '{{shebang_language}}'
       scope: constant.language.shebang.lua
-    - match: \n
+    - match: $\n?
       pop: 1
+
+  merge-conflict-markers:
+    # see also: Diff.sublime-syntax#conflict-markers
+    - match: ^(<{7})(?:\s+(\S.*?))?$\n?
+      scope: meta.block.conflict.begin.diff
+      captures:
+        1: punctuation.section.block.begin.diff
+        2: entity.name.section.diff
+    - match: ^(>{7})(?:\s+(\S.*?))?$\n?
+      scope: meta.block.conflict.end.diff
+      captures:
+        1: punctuation.section.block.end.diff
+        2: entity.name.section.diff
+    - match: ^(\|{7}|={7})(?:\s+(\S.*?))?$\n?
+      scope: meta.block.conflict.separator.diff
+      captures:
+        1: punctuation.section.block.diff
+        2: entity.name.section.diff
 
   statements:
     - match: ;
@@ -142,7 +235,7 @@ contexts:
       scope: invalid.illegal.unexpected-end.lua
 
     - match: (?=\S)
-      push: expression
+      push: expression-list
 
   block-contents:
     - meta_scope: meta.block.lua
@@ -470,8 +563,11 @@ contexts:
       pop: 1
 
   builtin:
-    - match: (?:true|false){{identifier_break}}
-      scope: constant.language.boolean.lua
+    - match: false{{identifier_break}}
+      scope: constant.language.boolean.false.lua
+      pop: 1
+    - match: true{{identifier_break}}
+      scope: constant.language.boolean.true.lua
       pop: 1
     - match: nil{{identifier_break}}
       scope: constant.language.null.lua
@@ -485,7 +581,7 @@ contexts:
 
   support:
     - match: |-
-        (?x:_G|_VERSION){{identifier_break}}
+        (?x:_G|_VERSION|_ENV){{identifier_break}}
       scope: support.constant.builtin.lua
       pop: 1
 
@@ -494,7 +590,7 @@ contexts:
           assert|collectgarbage|dofile|error|getmetatable|ipairs|load|loadfile
           |next|pairs|pcall|print|rawequal|rawget|rawlen|rawset|select
           |setmetatable|tonumber|tostring|type|xpcall
-          |require|getfenv|module|setfenv|unpack
+          |require|getfenv|module|setfenv|unpack|warn
         ){{function_call_ahead}}
       scope: meta.function-call.lua support.function.builtin.lua
       pop: 1

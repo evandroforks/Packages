@@ -1,5 +1,155 @@
 /* SYNTAX TEST "Packages/C++/C.sublime-syntax" */
 
+// =Banner=
+/*  ^^^^^^ comment.line.banner.c meta.toc-list.banner.line.c */
+
+// = Banner =
+/* ^^^^^^^^^^^ comment.line.banner.c */
+/*^^^ - meta.toc-list  */
+/*   ^^^^^^ meta.toc-list.banner.line.c */
+/*         ^^^ - meta.toc-list  */
+
+// Comment //
+/* <- comment.line.double-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.double-slash.c punctuation.definition.comment.c */
+/*^^^^^^^^^ comment.line.double-slash.c - punctuation */
+ /*        ^^ comment.line.double-slash.c punctuation.definition.comment.c */
+
+//! Comment
+/* <- comment.line.documentation.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.c punctuation.definition.comment.c */
+  /* <- comment.line.documentation.c punctuation.definition.comment.c */
+ /*^^^^^^^^^ comment.line.documentation.c - punctuation */
+
+/// Comment ///
+/* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+  /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /*^^^^^^^^^ comment.line.documentation.triple-slash.c - punctuation */
+ /*         ^^^ comment.line.documentation.triple-slash.c - punctuation */
+
+//// Comment ////  
+/* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+/*^ comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+/*  ^^^^^^^^^ comment.line.documentation.triple-slash.c - punctuation */
+ /*          ^^^^ comment.line.documentation.triple-slash.c - punctuation */
+/*               ^^ comment.line.documentation.triple-slash.c - punctuation */
+
+/* =Banner= */
+/* <- comment.block.banner.c punctuation.definition.comment.begin.c */
+/*^^^^^^^^^^ comment.block.banner.c - punctuation */
+/*  ^^^^^^ meta.toc-list.banner.block.c  */
+/*          ^^ comment.block.banner.c punctuation.definition.comment.end.c */
+
+/* = Banner = */
+/* <- comment.block.banner.c punctuation.definition.comment.begin.c */
+/*^^^^^^^^^^^^ comment.block.banner.c - punctuation */
+/*^^^ - meta.toc-list  */
+/*   ^^^^^^ meta.toc-list.banner.block.c  */
+/*         ^^^^^ - meta.toc-list  */
+/*            ^^ comment.block.banner.c punctuation.definition.comment.end.c */
+
+   /*****/
+/* ^^^^^^^ comment.block.empty.c punctuation.definition.comment.c */
+
+   /**
+/* ^^^ comment.block.documentation.c punctuation.definition.comment.begin.c */
+
+   /***
+/* ^^^^ comment.block.documentation.c punctuation.definition.comment.begin.c */
+
+   /*!
+/* ^^^ comment.block.documentation.c punctuation.definition.comment.begin.c */
+
+   /*!****
+/* ^^^ comment.block.documentation.c punctuation.definition.comment.begin.c */
+/*    ^^^^^ comment.block.documentation.c - punctuation */
+
+   /*!****/
+/* ^^^ comment.block.documentation.c punctuation.definition.comment.begin.c */
+/*    ^^^^^ comment.block.documentation.c punctuation.definition.comment.end.c */
+
+   /*!
+    * docstring
+    **/
+/*  ^^^ comment.block.documentation.c */
+
+    */
+/*  ^^ invalid.illegal.stray-comment-end.c */
+
+    **/
+/*  ^^^ invalid.illegal.stray-comment-end.c */
+
+/*
+ * Merge Conflict Marker Tests
+ */
+
+/* Merge conflicts in comments
+
+<<<<<<< HEAD
+// <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//     ^ meta.block.conflict.begin.diff - entity - punctuation
+//      ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+//          ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+// <- meta.block.conflict.separator.diff punctuation.section.block.diff
+//^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+//     ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+// <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+//^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+//     ^ meta.block.conflict.end.diff - entity - punctuation
+//      ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+//            ^ meta.block.conflict.end.diff - entity - punctuation
+*/
+
+/** Merge conflicts in docblock comments
+
+<<<<<<< HEAD
+// <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//     ^ meta.block.conflict.begin.diff - entity - punctuation
+//      ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+//          ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+// <- meta.block.conflict.separator.diff punctuation.section.block.diff
+//^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+//     ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+// <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+//^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+//     ^ meta.block.conflict.end.diff - entity - punctuation
+//      ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+//            ^ meta.block.conflict.end.diff - entity - punctuation
+*/
+
+/* Top-level merge conflicts */
+
+<<<<<<< HEAD
+/* <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff */
+/*^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff */
+/*     ^ meta.block.conflict.begin.diff - entity - punctuation */
+/*      ^^^^ meta.block.conflict.begin.diff entity.name.section.diff */
+/*          ^ meta.block.conflict.begin.diff - entity - punctuation */
+
+=======
+/* <- meta.block.conflict.separator.diff punctuation.section.block.diff */
+/*^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff */
+/*     ^ meta.block.conflict.separator.diff - punctuation */
+
+>>>>>>> master
+/* <- meta.block.conflict.end.diff punctuation.section.block.end.diff */
+/*^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff */
+/*     ^ meta.block.conflict.end.diff - entity - punctuation */
+/*      ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff */
+/*            ^ meta.block.conflict.end.diff - entity - punctuation */
+
 int main(){
     int a=5,b=0;
     while(a-->0)++b;
@@ -10,6 +160,10 @@ int main(){
 }
 
 enum Foo { kFoo, kBar };
+/* <- keyword.declaration.enum */
+/*   ^ entity.name.enum */
+/*         ^ entity.name.constant.c */
+/*               ^ entity.name.constant.c */
 #define FOO Foo
 enum FOO do_the_foo(void);
 /*       ^ entity.name.function */
@@ -20,6 +174,36 @@ enum TheEnum { kFoo, kBar };
 static enum APIC_CAPABILITY apic_capabilities(void) { return kFoo; };
 /*                          ^ entity.name.function */
 /*                                            ^ storage.type */
+
+enum { kFoo, kBar };
+/* <- keyword.declaration.enum */
+/*     ^ entity.name.constant.c */
+/*           ^ entity.name.constant.c */
+
+enum { kFoo = FOO, kBar = BAR };
+/* <- keyword.declaration.enum */
+/*     ^^^^ entity.name.constant.c */
+/*          ^ keyword.operator.assignment.c */
+/*            ^^^ - entity.name.constant */
+/*               ^ punctuation.separator.c */
+/*                 ^^^^ entity.name.constant.c */
+/*                      ^ keyword.operator.assignment.c */
+/*                        ^^^ - entity.name.constant */
+
+enum {
+    FOO,
+/*  ^^^ entity.name.constant.c */
+/*     ^ punctuation.separator.c */
+    BAR
+/*  ^^^ entity.name.constant.c */
+};
+
+typedef enum state { DEAD, ALIVE } State;
+/* <- keyword.declaration.type */
+/*      ^^^^ keyword.declaration.enum */
+/*           ^ entity.name.enum */
+/*                   ^ entity.name.constant.c */
+/*                         ^ entity.name.constant.c */
 
 struct __declspec(dllimport) X {};
 /*     ^ storage.modifier */
@@ -32,9 +216,9 @@ struct __declspec(dllimport) baz X {};
 struct foo {
 /*     ^ entity.name.struct */
     union {
-/*  ^ keyword.declaration */
+/*  ^ keyword.declaration.union */
         struct {
-/*      ^ keyword.declaration */
+/*      ^ keyword.declaration.struct */
             int a;
 /*          ^ storage.type */
             int b;
@@ -45,18 +229,18 @@ struct foo {
 
 /*[[[cog
 maxParams = 24
-/*          ^^ source.c comment.block.c source.python constant.numeric.integer.decimal.python */
+/*          ^^ source.c comment.block.c source.python meta.number.integer.decimal.python constant.numeric.value.python */
 ]]]*/
 
 #define EXTTS_BUFSIZE (PTP_BUF_TIMESTAMPS /* comment block */ * sizeof(struct ptp_extts_event)) // comment line
 /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro */
 /*                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group */
 /*                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^ meta.group meta.group */
-/* <- keyword.control.import.define */
+/* <- keyword.control.directive.define */
 /*      ^ entity.name.constant.preprocessor */
 /*                                        ^ comment.block */
 /*                                                              ^ keyword.operator.word */
-/*                                                                     ^ keyword.declaration */
+/*                                                                     ^ keyword.declaration.struct */
 /*                                                                                              ^ comment.line */
 
 #pragma foo(bar, \
@@ -72,7 +256,7 @@ maxParams = 24
 #define max(a, b, \
 /*^^^^^^^^^^^^^^^^^ meta.preprocessor.macro */ \
 /*         ^^^^^^^^ meta.preprocessor.macro.parameters */ \
-/* <- keyword.control.import.define */ \
+/* <- keyword.control.directive.define */ \
 /*      ^ entity.name.function.preprocessor */ \
 /*         ^ punctuation.section.group.begin */ \
 /*          ^ variable.parameter */ \
@@ -92,6 +276,102 @@ maxParams = 24
 int i;
 /* <- storage.type */
 
+signed _BitInt(4) bi1 = 1wb;
+/*     ^ keyword.declaration.type */
+/*                       ^ constant.numeric.suffix */
+
+unsigned _BitInt(4) bi2 = 1uwb;
+/*       ^ keyword.declaration.type */
+/*                         ^ constant.numeric.suffix */
+
+_Atomic int ai1;
+/* <- storage.modifier */
+
+_Atomic(int) ai2;
+/* <- storage.modifier */
+
+_Alignas(int) int aa1;
+/* <- keyword.declaration.type */
+
+alignas(int) int aa2;
+/* <- keyword.declaration.type */
+
+thread_local int tl1;
+/* <- storage.modifier */
+
+_Thread_local int tl2;
+/* <- storage.modifier */
+
+typeof(i) dt;
+/* <- keyword.declaration.type */
+/*    ^ punctuation.section.group.begin */
+/*      ^ punctuation.section.group.end */
+__typeof(i) dt;
+/* <- keyword.declaration.type */
+/*      ^ punctuation.section.group.begin */
+/*        ^ punctuation.section.group.end */
+__typeof__(i) dt;
+/* <- keyword.declaration.type */
+/*        ^ punctuation.section.group.begin */
+/*          ^ punctuation.section.group.end */
+typeof_unqual(i) dt;
+/* <- keyword.declaration.type */
+/*           ^ punctuation.section.group.begin */
+/*             ^ punctuation.section.group.end */
+
+static_assert(alignof(int) == 4);
+/*              ^ keyword.operator.word */
+
+_Static_assert(_Alignof(int) == 4);
+/*              ^ keyword.operator.word */
+
+static_assert(sizeof(int) == 4);
+/* <- keyword.operator.word */
+
+_Static_assert(sizeof(int) == 4);
+/* <- keyword.operator.word */
+
+_Generic(x, int: 1, default: 0);
+/* <- keyword.operator.word */
+/*      ^ punctuation.section.group.begin */
+/*          ^^^ storage.type */
+/*                  ^^^^^^^ keyword.control */
+
+_Countof(arr);
+/* <- keyword.operator.word */
+/*      ^ punctuation.section.group.begin */
+/*          ^ punctuation.section.group.end */
+
+void stdlib_macro_test(void) {
+    countof(arr);
+/*  ^^^^^^^ support.function */
+    offsetof(struct S, member);
+/*  ^^^^^^^^ support.function */
+    unreachable();
+/*  ^^^^^^^^^^^ support.function */
+    ckd_add(&r, a, b);
+/*  ^^^^^^^ support.function */
+}
+
+void build_default_prototype(Function *ret) {
+    static typeof(*ret->params) params[4];
+           /* <- keyword.declaration.type */
+           /*    ^ punctuation.section.group.begin */
+           /*                 ^ punctuation.section.group.end */
+    static __typeof(*ret->params) params[4];
+           /* <- keyword.declaration.type */
+           /*      ^ punctuation.section.group.begin */
+           /*                   ^ punctuation.section.group.end */
+    static __typeof__(*ret->params) params[4];
+           /* <- keyword.declaration.type */
+           /*        ^ punctuation.section.group.begin */
+           /*                     ^ punctuation.section.group.end */
+    static typeof_unqual(*ret->params) params[4];
+           /* <- keyword.declaration.type */
+           /*           ^ punctuation.section.group.begin */
+           /*                        ^ punctuation.section.group.end */
+}
+
 // The following example ensures that comments at the end of preprocessor
 // directives don't mess with context transitions
 int func() {
@@ -101,13 +381,13 @@ int func() {
 /*  ^ entity.name.function */
     #if( EXTAL == 40000 )       /* 40 MHz */
 /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function meta.block */
-/*  ^ keyword.control.import */
+/*  ^ keyword.control.directive */
         #define PLL_RFD_PHI1    10      // PLL0_PH1 = 40MHz
-/*      ^ keyword.control.import */
+/*      ^ keyword.control.directive */
 /*                              ^^ meta.number constant.numeric.value */
 /*                                      ^ comment.line */
     #endif
-/*  ^ keyword.control.import */
+/*  ^ keyword.control.directive */
 }
 /* <- meta.function meta.block punctuation.section.block.end */
  /* <- - meta.function meta.block */
@@ -118,7 +398,7 @@ int f(int x, \
 
 #define CONST0 16 // Comment
 #define CONST1 8
-/* <- keyword.control.import.define */
+/* <- keyword.control.directive.define */
 /*      ^ entity.name.constant */
 
 #if defined(VARIABLE) | // comment_line \
@@ -127,28 +407,303 @@ int f(int x, \
 /*^^^^^^^^^^^^^^^ meta.preprocessor */
 /*  ^ keyword.control */
 # error This is a long error message that need to   \
-/* <- keyword.control.import */ \
+/* <- keyword.control.directive */ \
 /*      ^ string.unquoted */ \
     be splitted into two lines to prevent large lines. // comment
-#error "Eplicitly quoted string wrapped, \
+#error "Explicitly quoted string wrapped, \
     ensuring that the string quoting stops at some point \
     "
 #warning This is a short warning
-/* <- keyword.control.import */
+/* <- keyword.control.directive */
 #endif
- /* <- keyword.control.import */
+ /* <- keyword.control.directive */
 
 #define MACRO_WITH_CURLY_BRACE {
-/* <- keyword.control.import.define */
+/* <- keyword.control.directive.define */
 /*      ^ entity.name.constant */
 
 #define MACRO_WITH_CURLY_BRACE_2 }
-/* <- keyword.control.import.define */
+/* <- keyword.control.directive.define */
 /*      ^ entity.name.constant */
 
 bool still_C_code_here = true;
 /* <- storage.type */
 /*                       ^ constant.language */
+
+_Decimal32 d32;
+/* <- storage.type */
+
+_Decimal64 d64;
+/* <- storage.type */
+
+_Decimal128 d128;
+/* <- storage.type */
+
+_Float16 f16;
+/* <- storage.type */
+
+_Float32 f32;
+/* <- storage.type */
+
+_Float32x f32x;
+/* <- storage.type */
+
+_Float64 f64;
+/* <- storage.type */
+
+_Float64x f64x;
+/* <- storage.type */
+
+_Float128 f128;
+/* <- storage.type */
+
+_Float128x f128x;
+/* <- storage.type */
+
+_Decimal64x d64x;
+/* <- storage.type */
+
+_Decimal128x d128x;
+/* <- storage.type */
+
+complex complex_t_var;
+/* <- support.type.complex */
+
+imaginary imaginary_t_var;
+/* <- support.type.complex */
+
+fenv_t fenv_t_var;
+/* <- support.type.fenv */
+
+fexcept_t fexcept_t_var;
+/* <- support.type.fenv */
+
+jmp_buf jmp_buf_var;
+/* <- support.type.setjmp */
+
+sig_atomic_t sig_atomic_t_var;
+/* <- support.type.signal */
+
+va_list va_list_var;
+/* <- support.type.stdarg */
+
+atomic_bool atomic_bool_var;
+/* <- support.type.stdatomic */
+
+atomic_char atomic_char_var;
+/* <- support.type.stdatomic */
+
+atomic_schar atomic_schar_var;
+/* <- support.type.stdatomic */
+
+atomic_uchar atomic_uchar_var;
+/* <- support.type.stdatomic */
+
+atomic_short atomic_short_var;
+/* <- support.type.stdatomic */
+
+atomic_ushort atomic_ushort_var;
+/* <- support.type.stdatomic */
+
+atomic_int atomic_int_var;
+/* <- support.type.stdatomic */
+
+atomic_uint atomic_uint_var;
+/* <- support.type.stdatomic */
+
+atomic_long atomic_long_var;
+/* <- support.type.stdatomic */
+
+atomic_ulong atomic_ulong_var;
+/* <- support.type.stdatomic */
+
+atomic_llong atomic_llong_var;
+/* <- support.type.stdatomic */
+
+atomic_ullong atomic_ullong_var;
+/* <- support.type.stdatomic */
+
+atomic_char8_t atomic_char8_t_var;
+/* <- support.type.stdatomic */
+
+atomic_char16_t atomic_char16_t_var;
+/* <- support.type.stdatomic */
+
+atomic_char32_t atomic_char32_t_var;
+/* <- support.type.stdatomic */
+
+atomic_wchar_t atomic_wchar_t_var;
+/* <- support.type.stdatomic */
+
+atomic_int_least8_t atomic_int_least8_t_var;
+/* <- support.type.stdatomic */
+
+atomic_uint_least8_t atomic_uint_least8_t_var;
+/* <- support.type.stdatomic */
+
+atomic_int_least16_t atomic_int_least16_t_var;
+/* <- support.type.stdatomic */
+
+atomic_uint_least16_t atomic_uint_least16_t_var;
+/* <- support.type.stdatomic */
+
+atomic_int_least32_t atomic_int_least32_t_var;
+/* <- support.type.stdatomic */
+
+atomic_uint_least32_t atomic_uint_least32_t_var;
+/* <- support.type.stdatomic */
+
+atomic_int_least64_t atomic_int_least64_t_var;
+/* <- support.type.stdatomic */
+
+atomic_uint_least64_t atomic_uint_least64_t_var;
+/* <- support.type.stdatomic */
+
+atomic_int_fast8_t atomic_int_fast8_t_var;
+/* <- support.type.stdatomic */
+
+atomic_uint_fast8_t atomic_uint_fast8_t_var;
+/* <- support.type.stdatomic */
+
+atomic_int_fast16_t atomic_int_fast16_t_var;
+/* <- support.type.stdatomic */
+
+atomic_uint_fast16_t atomic_uint_fast16_t_var;
+/* <- support.type.stdatomic */
+
+atomic_int_fast32_t atomic_int_fast32_t_var;
+/* <- support.type.stdatomic */
+
+atomic_uint_fast32_t atomic_uint_fast32_t_var;
+/* <- support.type.stdatomic */
+
+atomic_int_fast64_t atomic_int_fast64_t_var;
+/* <- support.type.stdatomic */
+
+atomic_uint_fast64_t atomic_uint_fast64_t_var;
+/* <- support.type.stdatomic */
+
+atomic_intptr_t atomic_intptr_t_var;
+/* <- support.type.stdatomic */
+
+atomic_uintptr_t atomic_uintptr_t_var;
+/* <- support.type.stdatomic */
+
+atomic_size_t atomic_size_t_var;
+/* <- support.type.stdatomic */
+
+atomic_ptrdiff_t atomic_ptrdiff_t_var;
+/* <- support.type.stdatomic */
+
+atomic_intmax_t atomic_intmax_t_var;
+/* <- support.type.stdatomic */
+
+atomic_uintmax_t atomic_uintmax_t_var;
+/* <- support.type.stdatomic */
+
+atomic_flag atomic_flag_var;
+/* <- support.type.stdatomic */
+
+memory_order memory_order_var;
+/* <- support.type.stdatomic */
+
+FILE *FILE_var;
+/* <- support.type.stdio */
+
+fpos_t fpos_t_var;
+/* <- support.type.stdio */
+
+div_t div_t_var;
+/* <- support.type.stdlib */
+
+ldiv_t ldiv_t_var;
+/* <- support.type.stdlib */
+
+lldiv_t lldiv_t_var;
+/* <- support.type.stdlib */
+
+imaxdiv_t imaxdiv_t_var;
+/* <- support.type.stdlib */
+
+size_t size_t_var;
+/* <- support.type.stddef */
+
+ptrdiff_t ptrdiff_t_var;
+/* <- support.type.stddef */
+
+max_align_t max_align_t_var;
+/* <- support.type.stddef */
+
+nullptr_t nullptr_t_var;
+/* <- support.type.stddef */
+
+wchar_t wchar_t_var;
+/* <- support.type.wchar */
+
+wint_t wint_t_var;
+/* <- support.type.wchar */
+
+wctrans_t wctrans_t_var;
+/* <- support.type.wchar */
+
+wctype_t wctype_t_var;
+/* <- support.type.wchar */
+
+mbstate_t mbstate_t_var;
+/* <- support.type.uchar */
+
+char8_t char8_t_var;
+/* <- support.type.uchar */
+
+char16_t char16_t_var;
+/* <- support.type.uchar */
+
+char32_t char32_t_var;
+/* <- support.type.uchar */
+
+time_t time_t_var;
+/* <- support.type.time */
+
+clock_t clock_t_var;
+/* <- support.type.time */
+
+thrd_t thrd_t_var;
+/* <- support.type.threads */
+
+thrd_start_t thrd_start_t_var;
+/* <- support.type.threads */
+
+mtx_t mtx_t_var;
+/* <- support.type.threads */
+
+cnd_t cnd_t_var;
+/* <- support.type.threads */
+
+tss_t tss_t_var;
+/* <- support.type.threads */
+
+tss_dtor_t tss_dtor_t_var;
+/* <- support.type.threads */
+
+once_flag once_flag_var;
+/* <- support.type.threads */
+
+some_arbitrary_type_t arbitrary_type_var;
+/* <- support.type.posix-reserved */
+
+void *null_pointer1 = NULL;
+                    /* ^ constant.language.null */
+
+void *null_pointer2 = nullptr;
+                    /* ^ constant.language.null */
+
+_Noreturn
+/* <- storage.modifier */
+void foo(void) { abort(); }
+
+noreturn
+/* <- storage.modifier */
+void bar(void) { abort(); }
 
 FOOBAR
 hello() {
@@ -211,8 +766,7 @@ int disabled_func() {
 #endif
 
 #if 0000000
-/*
-    ^^^^^^^ meta.number constant.numeric.value
+/*  ^^^^^^^ meta.number constant.numeric.value
 */
 #endif
 
@@ -227,8 +781,7 @@ int disabled_func() {
 #endif
 
 #if 0090
-/*
-    ^^^^ meta.number constant.numeric.value
+/*  ^^^^ meta.number constant.numeric.value
 */
 #endif
 
@@ -278,6 +831,10 @@ struct X
 
 /**
     *
+/*  ^ comment.block.documentation.c punctuation.definition.comment.c */
+
+/*
+    *
 /*  ^ comment.block.c punctuation.definition.comment.c */
 
 /////////////////////////////////////////////
@@ -303,11 +860,11 @@ if (4) {
 /////////////////////////////////////////////
 
 typedef int myint;
-/* <- keyword.declaration */
+/* <- keyword.declaration.type */
 /*          ^ entity.name.type */
 
 typedef struct mystruct {
-/* <- keyword.declaration */
+/* <- keyword.declaration.type */
 /*      ^ keyword.declaration.struct.c */
 /*             ^ entity.name.struct.c */
 } mystruct;
@@ -349,14 +906,26 @@ struct point get_point() {}
 /*           ^^^^^^^^^^^^^^ meta.function */
 /*                    ^^ meta.function.parameters */
 /*                       ^^ meta.block */
-/*                       ^ punctuation.section.block.begin
-/*                        ^ punctuation.section.block.end
-/* ^ keyword.declaration */
+/*                       ^ punctuation.section.block.begin  */
+/*                        ^ punctuation.section.block.end  */
+
+struct point get_point() {}
+/* ^ keyword.declaration.struct */
 /*     ^ - entity.name.struct */
 /*           ^ entity.name.function */
 
+enum point get_point() {}
+/* <- keyword.declaration.enum */
+/*   ^ - entity.name.struct */
+/*         ^ entity.name.function */
+
+union point get_point() {}
+/* <- keyword.declaration.union */
+/*    ^ - entity.name.union */
+/*          ^ entity.name.function */
+
 struct point **alloc_points();
-/* ^ keyword.declaration */
+/* <- keyword.declaration.struct */
 /*     ^ - entity.name.struct */
 /*           ^^ keyword.operator */
 /*             ^ entity.name.function */
@@ -383,8 +952,11 @@ struct foo MACRO {
 struct foo
 /*     ^ entity.name */
 
+struct UI_BoundingBox position;
+/* <- keyword.declaration.struct */
+
 struct UI_MenuBoxData
-/* <- keyword.declaration */
+/* <- keyword.declaration.struct */
 /*     ^ entity.name.struct */
 {
     struct UI_BoundingBox position;
@@ -403,6 +975,23 @@ struct UI_MenuBoxData
 /////////////////////////////////////////////
 // Test preprocessor branching and C blocks
 /////////////////////////////////////////////
+
+int bar(int, int const *, int const * const);
+/*  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function */
+/*     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.parameters meta.group */
+/*     ^ punctuation.section.group.begin */
+/*                                         ^ punctuation.section.group.end */
+/*                                          ^ punctuation.terminator */
+/*      ^^^ storage.type */
+/*         ^ punctuation.separator */
+/*           ^^^ storage.type */
+/*               ^^^^^ storage.modifier */
+/*                     ^ keyword.operator */
+/*                      ^ punctuation.separator */
+/*                        ^^^ storage.type */
+/*                            ^^^^^ storage.modifier */
+/*                                  ^ keyword.operator */
+/*                                    ^^^^^ storage.modifier */
 
 int foo(int val, float val2[])
 /*  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function */
@@ -424,17 +1013,17 @@ int foo(int val, float val2[])
 /*             ^^ keyword.operator.comparison.c */
         return 0;
 #if CROSS_SCOPE_MACRO
- /* <- keyword.control.import */
+ /* <- keyword.control.directive */
     } else if (result > 0) {
         return 1;
 #endif
- /* <- keyword.control.import */
+ /* <- keyword.control.directive */
     }
 /*  ^ meta.block meta.block punctuation.section.block.end */
 /*   ^ - meta.block meta.block */
 
 #ifdef FOO
- /* <- keyword.control.import */
+ /* <- keyword.control.directive */
     int foobar
 /*      ^^^^^^ - entity.name.function */
     ;
@@ -442,12 +1031,20 @@ int foo(int val, float val2[])
     if (val == -1) {
 /*  ^^ keyword.control */
 /*                 ^ meta.block meta.block punctuation.section.block.begin */
-#else
- /* <- keyword.control.import */
+#elifdef BAR
+ /* <- keyword.control.directive */
     if (val == -2) {
 /*                 ^ meta.block meta.block punctuation.section.block.begin */
+#elifndef BAZ
+ /* <- keyword.control.directive */
+    if (val == -3) {
+/*                 ^ meta.block meta.block punctuation.section.block.begin */
+#else
+ /* <- keyword.control.directive */
+    if (val == -4) {
+/*                 ^ meta.block meta.block punctuation.section.block.begin */
 #endif
- /* <- keyword.control.import */
+ /* <- keyword.control.directive */
         val += 1;
     }
 /*  ^ meta.block meta.block punctuation.section.block.end */
@@ -465,15 +1062,15 @@ GetTextMetrics(
     )
 {
 #ifdef UNICODE
-/* <- keyword.control.import */
+/* <- keyword.control.directive */
     return GetTextMetricsW(
 /*         ^ variable.function */
 #else
-/* <- keyword.control.import */
+/* <- keyword.control.directive */
     return GetTextMetricsA(
 /*         ^ variable.function */
 #endif
-/* <- keyword.control.import */
+/* <- keyword.control.directive */
         hdc,
         lptm
         );
@@ -539,15 +1136,15 @@ MACRO1 void * MACRO2 myfuncname () {
     }
 
     struct Args {
-/*  ^ keyword.declaration */
+/*  ^ keyword.declaration.struct */
 /*         ^ entity.name.struct */
         void* hello;
         void* foobar;
     };
 
     struct Args args;
-/*  ^ keyword.declaration */
-/*         ^ - entity */
+/*  ^ keyword.declaration.struct */
+/*         ^ - entity.name.struct */
 
 }
 
@@ -560,6 +1157,9 @@ static const uint32_t * const MACRO funcname();
 /*                    ^ keyword.operator */
 /*                      ^ storage.modifier */
 /*                                  ^ entity.name.function */
+
+static constexpr int bar = 1;
+/*     ^ storage.modifier */
 
 MACRO int
 /*    ^ storage.type */
@@ -605,6 +1205,40 @@ __notdeclspec(deprecated("bla")) void func2(int) {}
 /* <- meta.function-call variable.function                    */
 /*                                    ^ entity.name.function  */
 
+
+
+inline [[nodiscard]] [[gnu::hot]] static void nodiscard_func();
+/* <- storage.modifier.c */
+/*     ^^^^^^^^^^^^^ meta.attribute.c */
+/*     ^^ punctuation.section.attribute.begin.c */
+/*       ^^^^^^^^^ storage.modifier.c */
+/*                ^^ punctuation.section.attribute.end.c */
+/*                   ^^^^^^^^^^^^ meta.attribute.c */
+/*                   ^^  punctuation.section.attribute.begin.c */
+/*                             ^^  punctuation.section.attribute.end.c */
+/*                                ^^^^^^ storage.modifier.c */
+/*                                            ^^^^^^^^^^^^^^ entity.name.function.c */
+
+
+[[deprecated("no longer used")]] void attribute_with_arg_func();
+/* <- meta.attribute.c punctuation.section.attribute.begin.c */
+/*^^^^^^^^^^ storage.modifier.c */
+/*          ^^^^^^^^^^^^^^^^^^ meta.group.c */
+/*            ^^^^^^^^^^^^^^^ string.quoted.double.c */
+/*                           ^ punctuation.section.group.end.c */
+/*                            ^^ punctuation.section.attribute.end.c */
+/*                                    ^^^^^^^^^^^^^^^^^^^^^^^ entity.name.function.c */
+
+inline [[gnu::always_inline, nodiscard]] void gnu_attributes_func();
+/*     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute.c */
+/*     ^^ meta.attribute.c punctuation.section.attribute.begin.c */
+/*                         ^ punctuation.separator.c */
+/*                           ^^^^^^^^^ storage.modifier.c */
+/*                                    ^^ punctuation.section.attribute.end.c */
+/*                                            ^^^^^^^^^^^^^^^^^^^ entity.name.function.c */
+
+
+
 /////////////////////////////////////////////
 // Test function call in function parameters
 /////////////////////////////////////////////
@@ -638,27 +1272,32 @@ func_call(foo
 /////////////////////////////////////////////
 
 #include "foobar.h"
-/* <- keyword.control.import.include */
+/* <- keyword.control.directive.include */
 /*       ^ punctuation.definition.string.begin */
 /*        ^^^^^^^^ string.quoted.double.include */
 /*                ^ punctuation.definition.string.end */
 
 #include <cstdlib>
-/* <- keyword.control.import.include */
+/* <- keyword.control.directive.include */
 /*       ^ punctuation.definition.string.begin */
 /*        ^^^^^^^ string.quoted.other.lt-gt.include */
 /*               ^ punctuation.definition.string.end */
 
 #ifdef _GLIBCXX_INCLUDE_NEXT_C_HEADERS
 #include_next <math.h>
-/* <- keyword.control.import.include */
+/* <- keyword.control.directive.include */
 /*            ^ punctuation.definition.string.begin */
 /*             ^^^^^^ string.quoted.other.lt-gt.include */
 /*                   ^ punctuation.definition.string.end */
 #endif
 
+static const unsigned char image_png[] = {
+#embed <image.png>
+/* <- keyword.control.directive.include */
+};
+
 #include<iostream>
-/* <- keyword.control.import.include */
+/* <- keyword.control.directive.include */
 /*      ^ punctuation.definition.string.begin */
 /*       ^^^^^^^^ string.quoted.other.lt-gt.include */
 /*               ^ punctuation.definition.string.end */
@@ -670,14 +1309,14 @@ func_call(foo
 dec0 = 0;
 /*     ^ meta.number.integer.decimal.c constant.numeric.value.c */
 /*      ^ punctuation.terminator - constant */
+
 dec1 = 1234567890;
 /*     ^^^^^^^^^^ meta.number.integer.decimal.c constant.numeric.value.c */
 /*               ^ punctuation.terminator - constant */
 
 dec2 = 1234567890f;
-/*     ^^^^^^^^^^^ meta.number.float.decimal.c */
 /*     ^^^^^^^^^^ constant.numeric.value.c */
-/*               ^ constant.numeric.suffix.c */
+/*               ^ invalid.illegal.numeric.suffix.c */
 /*                ^ punctuation.terminator - constant */
 
 dec3 = 1234567890L;
@@ -711,12 +1350,18 @@ dec7 = 1234567890uLL;
 /*                  ^ punctuation.terminator - constant */
 
 dec8 = 1'234_567'890s0f;
-/*     ^ meta.number.integer.decimal.c constant.numeric.value.c */
-/*      ^^^^^^^^^ string.quoted.single */
-/*               ^^^^^^ meta.number.integer.decimal.c */
+/*     ^^^^^^^^^^^^^^^^ meta.number.integer.decimal.c */
+/*     ^^^^^ constant.numeric.value.c */
+/*          ^^^^ invalid.illegal.numeric.suffix.c */
 /*               ^^^ constant.numeric.value.c */
 /*                  ^^^ invalid.illegal.numeric.suffix.c */
 /*                     ^ punctuation.terminator - constant */
+
+dec9 = 2'354'202'076LL;
+/*     ^^^^^^^^^^^^^^^ meta.number.integer.decimal.c */
+/*     ^^^^^^^^^^^^^ constant.numeric.value.c */
+/*                  ^^ constant.numeric.suffix.c */
+/*                    ^ punctuation.terminator - constant */
 
 oct1 = 01234567;
 /*     ^^^^^^^^ meta.number.integer.octal.c */
@@ -745,12 +1390,18 @@ oct4 = 01234567ulL;
 /*             ^^^ constant.numeric.suffix.c */
 /*                ^ punctuation.terminator - constant */
 
-oct2 = 01284967Z0L;
+oct5 = 01284967Z0L;
 /*     ^^^^^^^^^^^ meta.number.integer.octal.c */
 /*     ^ constant.numeric.base.c */
 /*      ^^ constant.numeric.value.c */
 /*        ^^^^^^^^ invalid.illegal.numeric.suffix.c */
 /*                ^ punctuation.terminator - constant */
+
+oct6 = 014'70;
+/*     ^^^^^^ meta.number.integer.octal.c */
+/*     ^ constant.numeric.base.c */
+/*      ^^^^^ constant.numeric.value.c */
+/*           ^ punctuation.terminator - constant */
 
 hex1 = 0x0+0xFL+0xaull+0xallu+0xfu+0x'f'12_4uz;
 /*     ^^^ meta.number.integer.hexadecimal.c */
@@ -772,11 +1423,9 @@ hex1 = 0x0+0xFL+0xaull+0xallu+0xfu+0x'f'12_4uz;
 /*                            ^^ constant.numeric.base.c */
 /*                              ^ constant.numeric.value.c */
 /*                               ^ constant.numeric.suffix.c */
-/*                                 ^^ meta.number.integer.hexadecimal.c */
+/*                                 ^^^^^^^ meta.number.integer.hexadecimal.c */
 /*                                 ^^ constant.numeric.base.c */
-/*                                   ^^^ string.quoted.single.c */
-/*                                      ^^^^^^ meta.number.integer.decimal.c */
-/*                                      ^^ constant.numeric.value.c */
+/*                                   ^^^^^ constant.numeric.value.c */
 /*                                        ^^^^ invalid.illegal.numeric.suffix.c */
 /*                                            ^ punctuation.terminator - constant */
 
@@ -792,6 +1441,30 @@ hex2 = 0xc1.01AbFp-1+0x1.45c778p+7f;
 /*                      ^ punctuation.separator.decimal.c */
 /*                                ^ constant.numeric.suffix.c */
 /*                                 ^ punctuation.terminator - constant */
+
+hex3 = 0xA7'45'8C'38;
+/*     ^^^^^^^^^^^^^ meta.number.integer.hexadecimal.c */
+/*     ^^ constant.numeric.base.c */
+/*       ^^^^^^^^^^^ constant.numeric.value.c */
+/*                  ^ punctuation.terminator - constant */
+
+bin1 = 0b010110;
+/*     ^^^^^^^^ meta.number.integer.binary */
+/*     ^^ constant.numeric.base */
+/*       ^^^^^^ constant.numeric.value */
+/*             ^ punctuation.terminator - constant */
+
+bin2 = 0B010010;
+/*     ^^^^^^^^ meta.number.integer.binary */
+/*     ^^ constant.numeric.base */
+/*       ^^^^^^ constant.numeric.value */
+/*             ^ punctuation.terminator - constant */
+
+bin3 = 0b1001'1101'0010'1100;
+/*     ^^^^^^^^^^^^^^^^^^^^^ meta.number.integer.binary */
+/*     ^^ constant.numeric.base */
+/*       ^^^^^^^^^^^^^^^^^^^ constant.numeric.value */
+/*                          ^ punctuation.terminator - constant */
 
 f = 1.1+1.1e1+1.1e-1+1.1f+1.1e1f+1.1e-1f+1.1L+1.1e1L+1.1e-1L;
 /*  ^^^ meta.number.float.decimal.c */

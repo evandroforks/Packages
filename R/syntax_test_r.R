@@ -40,6 +40,17 @@
 #    ^^^^^^^^^^^^^ entity.name.section.r
 #                 ^^^^^^ comment.line.number-sign.r - entity
 
+######
+# <- comment.line.number-sign.r punctuation.definition.comment.r - entity
+#^^^^^ comment.line.number-sign.r punctuation.definition.comment.r - entity
+#     ^ comment.line.number-sign.r - entity - punctuation
+
+# # ####
+# <- comment.line.number-sign.r punctuation.definition.comment.r - entity
+#^ comment.line.number-sign.r - entity - punctuation
+# ^ comment.line.number-sign.r entity.name.section.r
+#  ^^^^^^ comment.line.number-sign.r - entity - punctuation
+
 # no section ###
 # ^^^^^^^^^^^^^^^ comment.line.number-sign.r - entity
 
@@ -61,6 +72,25 @@
 #    ^^^^^^^^^^^^^ entity.name.section.r
 #                 ^^^^^^ comment.line.number-sign.r - entity
 
+<<<<<<< HEAD
+#  <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+# ^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+#      ^ meta.block.conflict.begin.diff - entity - punctuation
+#       ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+#           ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+#  <- meta.block.conflict.separator.diff punctuation.section.block.diff
+# ^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+#      ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+#  <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+# ^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+#      ^ meta.block.conflict.end.diff - entity - punctuation
+#       ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+
+
 # constants
 pi
 # <- support.constant.misc.r
@@ -73,11 +103,11 @@ month.name
 month.abb
 # <- support.constant.misc.r
 TRUE
-# <- constant.language.r
+# <- constant.language.boolean.true.r
 FALSE
-# <- constant.language.r
+# <- constant.language.boolean.false.r
 NULL
-# <- constant.language.r
+# <- constant.language.null.r
 NA
 # <- constant.language.r
 NA_integer_
@@ -251,12 +281,13 @@ NaN
 #          ^ keyword.operator.arithmetic.r
 #            ^ keyword.operator.arithmetic.r
 
-  <<- <- = -> ->>
+  <<- <- = -> ->> |>
 # ^^^ keyword.operator.assignment.r
 #     ^^ keyword.operator.assignment.r
 #        ^ keyword.operator.assignment.r
 #          ^^ keyword.operator.assignment.r
 #             ^^^ keyword.operator.assignment.r
+#                 ^^ keyword.operator.assignment.redirection.r
 
   == != <= >= <> < > && & || | !
 # ^^ keyword.operator.comparison.r
@@ -386,7 +417,7 @@ if (1) {} else {return()}
 for (i in 1:10) {
 # <- keyword.control.loop.for.r
 #   ^ punctuation.section.parens.begin.r
-#      ^^ keyword.operator.word.r
+#      ^^ keyword.control.loop.in.r
 #             ^ punctuation.section.parens.end.r
 #               ^ punctuation.section.braces.begin.r
 }

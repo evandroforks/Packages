@@ -34,6 +34,10 @@
 #        - meta_prepend: true
 #        - include: asp-tags
 #
+#      cdata-content:
+#        - meta_prepend: true
+#        - include: asp-interpolations
+#
 #      tag-attribute-value-content:
 #        - meta_prepend: true
 #        - include: asp-interpolations
@@ -55,6 +59,24 @@
 #          scope: punctuation.section.embedded.end.html
 #          pop: 1
 #        - ...
+#
+#  2 TAG NAME INTERPOLATION
+#
+#    Default HTML tags start with a case-insensitive latter a..z.
+#
+#    If a template language supports interpolation within HTML tag names,
+#    it must also ensure a tag being identified as such, if its name starts
+#    with a template tag by overriding the `tag_name_start` variable.
+#
+#    Example:
+#
+#      variables:
+#        # make `{{` a valid tag name start sequence
+#        tag_name_start: (?:[A-Za-z]|{{)
+#
+#    Enables correct scoping of:
+#
+#        <{{tag_name}} ... >
 #
 ###############################################################################
 # https://www.sublimetext.com/docs/syntax.html
@@ -84,13 +106,17 @@ variables:
   tag_name_break_char: '[{{ascii_space}}/<>]'
   tag_name_break: (?={{tag_name_break_char}})
   tag_name_char: '[^{{tag_name_break_char}}]'
-  tag_name: '[A-Za-z]{{tag_name_char}}*'
+  tag_name_start: '[A-Za-z]'  # Override it for proper tag name interpolation.
+  tag_name: '{{tag_name_start}}{{tag_name_char}}*'
 
 ###############################################################################
 
 contexts:
 
   main:
+    - include: html
+
+  html:
     - include: preprocessor
     - include: doctype
     - include: comment
@@ -109,11 +135,13 @@ contexts:
       push: cdata-content
 
   cdata-content:
+    - meta_include_prototype: false
     - meta_scope: meta.tag.sgml.cdata.html
-    - meta_content_scope: string.unquoted.cdata.html
+    - meta_content_scope: meta.string.html string.unquoted.cdata.html
     - match: ']]>'
       scope: punctuation.definition.tag.end.html
       pop: 1
+    - include: merge-conflict-markers
 
 ###[ COMMENT ]################################################################
 
@@ -123,9 +151,11 @@ contexts:
         1: punctuation.definition.comment.begin.html
         2: invalid.illegal.bad-comments-or-CDATA.html
       push: comment-content
+    - include: merge-conflict-markers
 
   comment-content:
     - meta_scope: comment.block.html
+    - include: merge-conflict-markers
     - match: (<!-)?(-->)
       captures:
         1: invalid.illegal.bad-comments-or-CDATA.html
@@ -133,6 +163,26 @@ contexts:
       pop: 1
     - match: <!--(?!-?>)|--!>
       scope: invalid.illegal.bad-comments-or-CDATA.html
+
+###[ MERGE CONFLICT MARKERS ]#################################################
+
+  merge-conflict-markers:
+    # see also: Diff.sublime-syntax#conflict-markers
+    - match: ^(<{7})(?:\s+(\S.*?))?$\n?
+      scope: meta.block.conflict.begin.diff
+      captures:
+        1: punctuation.section.block.begin.diff
+        2: entity.name.section.diff
+    - match: ^(>{7})(?:\s+(\S.*?))?$\n?
+      scope: meta.block.conflict.end.diff
+      captures:
+        1: punctuation.section.block.end.diff
+        2: entity.name.section.diff
+    - match: ^(\|{7}|={7})(?:\s+(\S.*?))?$\n?
+      scope: meta.block.conflict.separator.diff
+      captures:
+        1: punctuation.section.block.diff
+        2: entity.name.section.diff
 
 ###[ DOCTYPE DECLARATION ]####################################################
 
@@ -149,6 +199,7 @@ contexts:
 
   doctype-meta:
     - meta_scope: meta.tag.sgml.doctype.html
+    - include: merge-conflict-markers
     - match: '>'
       scope: punctuation.definition.tag.end.html
       pop: 1
@@ -157,18 +208,21 @@ contexts:
     - match: '{{tag_name}}'
       scope: constant.language.doctype.html
       pop: 1
+    - include: merge-conflict-markers
     - include: else-pop
 
   doctype-content-type:
     - match: (?i:public|system){{tag_name_break}}
       scope: keyword.content.external.html
       pop: 1
+    - include: merge-conflict-markers
     - include: else-pop
 
   doctype-content:
     - match: \[
       scope: punctuation.section.brackets.begin.html
       set: doctype-internal-subset-content
+    - include: merge-conflict-markers
     - include: strings
     - include: else-pop
 
@@ -182,7 +236,7 @@ contexts:
 ###[ PREPROCESSOR ]###########################################################
 
   preprocessor:
-    - match: (<\?)(xml)
+    - match: (<\?)(xml(?:-{{tag_name_char}}*)?)
       captures:
         1: punctuation.definition.tag.begin.html
         2: entity.name.tag.xml.html
@@ -190,11 +244,11 @@ contexts:
 
   preprocessor-content:
     - meta_scope: meta.tag.preprocessor.xml.html
-    - match: \?>
+    - match: \??>
       scope: punctuation.definition.tag.end.html
       pop: 1
     - include: tag-generic-attribute
-    - include: strings
+    - include: merge-conflict-markers
 
 ###[ TAGS ]###################################################################
 
@@ -231,21 +285,23 @@ contexts:
 ###[ HTML TAGS ]##############################################################
 
   tag-html:
-    - match: </?(?=[A-Za-z])
+    - match: </?(?={{tag_name_start}})
       scope: punctuation.definition.tag.begin.html
       push:
         - tag-html-content
         - tag-html-name
 
   tag-html-name:
-      - meta_content_scope: entity.name.tag.html
-      - match: '{{tag_name_break}}'
-        pop: 1
+    - meta_content_scope: entity.name.tag.html
+    - match: '{{tag_name_break}}'
+      pop: 1
 
   tag-html-content:
-      - meta_scope: meta.tag.html
-      - include: tag-end-maybe-self-closing
-      - include: tag-attributes
+    - meta_include_prototype: false
+    - meta_scope: meta.tag.html
+    - include: merge-conflict-markers
+    - include: tag-end-maybe-self-closing
+    - include: tag-attributes
 
 ###[ ATTRIBUTES ]#############################################################
 
@@ -254,6 +310,7 @@ contexts:
 
   tag-attribute-value-content:
     - include: entities
+    - include: merge-conflict-markers
 
   tag-attribute-value-unquoted-end:
     - match: '{{unquoted_attribute_break}}'
@@ -285,6 +342,7 @@ contexts:
     - include: immediately-pop
 
   tag-generic-attribute-assignment:
+    - meta_include_prototype: false
     - match: =
       scope: punctuation.separator.key-value.html
       set: tag-generic-attribute-value
@@ -413,6 +471,7 @@ contexts:
     # This context exists as common entry point for inherited syntaxes to add
     # custom highlighting to all strings.
     - include: entities
+    - include: merge-conflict-markers
 
 ###[ PROTOTYPES ]#############################################################
 

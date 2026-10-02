@@ -1,5 +1,155 @@
 /* SYNTAX TEST "Packages/Objective-C/Objective-C.sublime-syntax" */
 
+// =Banner=
+/*  ^^^^^^ comment.line.banner.c meta.toc-list.banner.line.c */
+
+// = Banner =
+/* ^^^^^^^^^^^ comment.line.banner.c */
+/*^^^ - meta.toc-list  */
+/*   ^^^^^^ meta.toc-list.banner.line.c */
+/*         ^^^ - meta.toc-list  */
+
+// Comment //
+/* <- comment.line.double-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.double-slash.c punctuation.definition.comment.c */
+/*^^^^^^^^^ comment.line.double-slash.c - punctuation */
+ /*        ^^ comment.line.double-slash.c punctuation.definition.comment.c */
+
+//! Comment
+/* <- comment.line.documentation.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.c punctuation.definition.comment.c */
+  /* <- comment.line.documentation.c punctuation.definition.comment.c */
+ /*^^^^^^^^^ comment.line.documentation.c - punctuation */
+
+/// Comment ///
+/* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+  /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /*^^^^^^^^^ comment.line.documentation.triple-slash.c - punctuation */
+ /*         ^^^ comment.line.documentation.triple-slash.c - punctuation */
+
+//// Comment ////  
+/* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+ /* <- comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+/*^ comment.line.documentation.triple-slash.c punctuation.definition.comment.c */
+/*  ^^^^^^^^^ comment.line.documentation.triple-slash.c - punctuation */
+ /*          ^^^^ comment.line.documentation.triple-slash.c - punctuation */
+/*               ^^ comment.line.documentation.triple-slash.c - punctuation */
+
+/* =Banner= */
+/* <- comment.block.banner.c punctuation.definition.comment.begin.c */
+/*^^^^^^^^^^ comment.block.banner.c - punctuation */
+/*  ^^^^^^ meta.toc-list.banner.block.c  */
+/*          ^^ comment.block.banner.c punctuation.definition.comment.end.c */
+
+/* = Banner = */
+/* <- comment.block.banner.c punctuation.definition.comment.begin.c */
+/*^^^^^^^^^^^^ comment.block.banner.c - punctuation */
+/*^^^ - meta.toc-list  */
+/*   ^^^^^^ meta.toc-list.banner.block.c  */
+/*         ^^^^^ - meta.toc-list  */
+/*            ^^ comment.block.banner.c punctuation.definition.comment.end.c */
+
+   /*****/
+/* ^^^^^^^ comment.block.empty.c punctuation.definition.comment.c */
+
+   /**
+/* ^^^ comment.block.documentation.c punctuation.definition.comment.begin.c */
+
+   /***
+/* ^^^^ comment.block.documentation.c punctuation.definition.comment.begin.c */
+
+   /*!
+/* ^^^ comment.block.documentation.c punctuation.definition.comment.begin.c */
+
+   /*!****
+/* ^^^ comment.block.documentation.c punctuation.definition.comment.begin.c */
+/*    ^^^^^ comment.block.documentation.c - punctuation */
+
+   /*!****/
+/* ^^^ comment.block.documentation.c punctuation.definition.comment.begin.c */
+/*    ^^^^^ comment.block.documentation.c punctuation.definition.comment.end.c */
+
+   /*!
+    * docstring
+    **/
+/*  ^^^ comment.block.documentation.c */
+
+    */
+/*  ^^ invalid.illegal.stray-comment-end.c */
+
+    **/
+/*  ^^^ invalid.illegal.stray-comment-end.c */
+
+/*
+ * Merge Conflict Marker Tests
+ */
+
+/* Merge conflicts in comments
+
+<<<<<<< HEAD
+// <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//     ^ meta.block.conflict.begin.diff - entity - punctuation
+//      ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+//          ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+// <- meta.block.conflict.separator.diff punctuation.section.block.diff
+//^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+//     ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+// <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+//^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+//     ^ meta.block.conflict.end.diff - entity - punctuation
+//      ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+//            ^ meta.block.conflict.end.diff - entity - punctuation
+*/
+
+/** Merge conflicts in docblock comments
+
+<<<<<<< HEAD
+// <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//     ^ meta.block.conflict.begin.diff - entity - punctuation
+//      ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+//          ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+// <- meta.block.conflict.separator.diff punctuation.section.block.diff
+//^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+//     ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+// <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+//^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+//     ^ meta.block.conflict.end.diff - entity - punctuation
+//      ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+//            ^ meta.block.conflict.end.diff - entity - punctuation
+*/
+
+/* Top-level merge conflicts */
+
+<<<<<<< HEAD
+/* <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff */
+/*^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff */
+/*     ^ meta.block.conflict.begin.diff - entity - punctuation */
+/*      ^^^^ meta.block.conflict.begin.diff entity.name.section.diff */
+/*          ^ meta.block.conflict.begin.diff - entity - punctuation */
+
+=======
+/* <- meta.block.conflict.separator.diff punctuation.section.block.diff */
+/*^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff */
+/*     ^ meta.block.conflict.separator.diff - punctuation */
+
+>>>>>>> master
+/* <- meta.block.conflict.end.diff punctuation.section.block.end.diff */
+/*^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff */
+/*     ^ meta.block.conflict.end.diff - entity - punctuation */
+/*      ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff */
+/*            ^ meta.block.conflict.end.diff - entity - punctuation */
+
 int main(){
     int a=5,b=0;
     while(a-->0)++b;
@@ -10,6 +160,10 @@ int main(){
 }
 
 enum Foo { kFoo, kBar };
+/* <- keyword.declaration */
+/*   ^ entity.name.enum */
+/*         ^ entity.name.constant.objc */
+/*               ^ entity.name.constant.objc */
 #define FOO Foo
 enum FOO do_the_foo(void);
 /*       ^ entity.name.function */
@@ -20,6 +174,35 @@ enum TheEnum { kFoo, kBar };
 static enum APIC_CAPABILITY apic_capabilities(void) { return kFoo; };
 /*                          ^ entity.name.function */
 /*                                            ^ storage.type */
+
+enum { kFoo, kBar };
+/* <- keyword.declaration */
+/*     ^ entity.name.constant.objc */
+/*           ^ entity.name.constant.objc */
+
+enum { kFoo = FOO, kBar = BAR };
+/* <- keyword.declaration */
+/*     ^^^^ entity.name.constant.objc */
+/*          ^ keyword.operator.assignment.c */
+/*            ^^^ - entity.name.constant */
+/*               ^ punctuation.separator.objc */
+/*                 ^^^^ entity.name.constant.objc */
+/*                      ^ keyword.operator.assignment.c */
+/*                        ^^^ - entity.name.constant */
+
+typedef enum state { DEAD, ALIVE } State;
+/* <- keyword.declaration
+/*           ^ entity.name.enum */
+/*                   ^ entity.name.constant.objc */
+/*                         ^ entity.name.constant.objc */
+
+enum {
+    FOO,
+/*  ^^^ entity.name.constant.objc */
+/*     ^ punctuation.separator.objc */
+    BAR
+/*  ^^^ entity.name.constant.objc */
+};
 
 struct __declspec(dllimport) X {};
 /*     ^ storage.modifier */
@@ -47,7 +230,7 @@ struct foo {
 /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.preprocessor.macro */
 /*                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group */
 /*                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^ meta.group meta.group */
-/* <- keyword.control.import.define */
+/* <- keyword.control.directive.define */
 /*      ^ entity.name.constant.preprocessor */
 /*                                        ^ comment.block */
 /*                                                              ^ keyword.operator.word */
@@ -67,7 +250,7 @@ struct foo {
 #define max(a, b, \
 /*^^^^^^^^^^^^^^^^^ meta.preprocessor.macro */ \
 /*         ^^^^^^^^ meta.preprocessor.macro.parameters */ \
-/* <- keyword.control.import.define */ \
+/* <- keyword.control.directive.define */ \
 /*      ^ entity.name.function.preprocessor */ \
 /*         ^ punctuation.section.group.begin */ \
 /*          ^ variable.parameter */ \
@@ -96,13 +279,13 @@ int func() {
 /*  ^ entity.name.function */
     #if( EXTAL == 40000 )       /* 40 MHz */
 /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function meta.block */
-/*  ^ keyword.control.import */
+/*  ^ keyword.control.directive */
         #define PLL_RFD_PHI1    10      // PLL0_PH1 = 40MHz
-/*      ^ keyword.control.import */
+/*      ^ keyword.control.directive */
 /*                              ^^ meta.number constant.numeric.value */
 /*                                      ^ comment.line */
     #endif
-/*  ^ keyword.control.import */
+/*  ^ keyword.control.directive */
 }
 /* <- meta.function meta.block punctuation.section.block.end */
  /* <- - meta.function meta.block */
@@ -113,7 +296,7 @@ int f(int x, \
 
 #define CONST0 16 // Comment
 #define CONST1 8
-/* <- keyword.control.import.define */
+/* <- keyword.control.directive.define */
 /*      ^ entity.name.constant */
 
 #if defined(VARIABLE) | // comment_line \
@@ -122,28 +305,64 @@ int f(int x, \
 /*^^^^^^^^^^^^^^^ meta.preprocessor */
 /*  ^ keyword.control */
 # error This is a long error message that need to   \
-/* <- keyword.control.import */ \
+/* <- keyword.control.directive */ \
 /*      ^ string.unquoted */ \
     be splitted into two lines to prevent large lines. // comment
-#error "Eplicitly quoted string wrapped, \
+#error "Explicitly quoted string wrapped, \
     ensuring that the string quoting stops at some point \
     "
 #warning This is a short warning
-/* <- keyword.control.import */
+/* <- keyword.control.directive */
 #endif
- /* <- keyword.control.import */
+ /* <- keyword.control.directive */
 
 #define MACRO_WITH_CURLY_BRACE {
-/* <- keyword.control.import.define */
+/* <- keyword.control.directive.define */
 /*      ^ entity.name.constant */
 
 #define MACRO_WITH_CURLY_BRACE_2 }
-/* <- keyword.control.import.define */
+/* <- keyword.control.directive.define */
 /*      ^ entity.name.constant */
 
 bool still_C_code_here = true;
 /* <- storage.type */
 /*                       ^ constant.language */
+
+size_t size_t_var;
+/* <- support.type.stddef */
+
+ptrdiff_t ptrdiff_t_var;
+/* <- support.type.stddef */
+
+max_align_t max_align_t_var;
+/* <- support.type.stddef */
+
+nullptr_t nullptr_t_var;
+/* <- support.type.stddef */
+
+wchar_t wchar_t_var;
+/* <- support.type.wchar */
+
+wint_t wint_t_var;
+/* <- support.type.wchar */
+
+wctrans_t wctrans_t_var;
+/* <- support.type.wchar */
+
+wctype_t wctype_t_var;
+/* <- support.type.wchar */
+
+mbstate_t mbstate_t_var;
+/* <- support.type.uchar */
+
+char8_t char8_t_var;
+/* <- support.type.uchar */
+
+char16_t char16_t_var;
+/* <- support.type.uchar */
+
+char32_t char32_t_var;
+/* <- support.type.uchar */
 
 FOOBAR
 hello() {
@@ -383,6 +602,23 @@ struct UI_MenuBoxData
 // Test preprocessor branching and C blocks
 /////////////////////////////////////////////
 
+int bar(int, int const *, int const * const);
+/*  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function */
+/*     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.parameters meta.group */
+/*     ^ punctuation.section.group.begin */
+/*                                         ^ punctuation.section.group.end */
+/*                                          ^ punctuation.terminator */
+/*      ^^^ storage.type */
+/*         ^ punctuation.separator */
+/*           ^^^ storage.type */
+/*               ^^^^^ storage.modifier */
+/*                     ^ keyword.operator */
+/*                      ^ punctuation.separator */
+/*                        ^^^ storage.type */
+/*                            ^^^^^ storage.modifier */
+/*                                  ^ keyword.operator */
+/*                                    ^^^^^ storage.modifier */
+
 int foo(int val, float val2[])
 /*  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function */
 /*     ^^^^^^^^^^^^^^^^^^^^^^^ meta.function.parameters meta.group */
@@ -403,29 +639,37 @@ int foo(int val, float val2[])
         return 0;
 /*      ^^^^^^ keyword.control.flow.return */
 #if CROSS_SCOPE_MACRO
- /* <- keyword.control.import */
+ /* <- keyword.control.directive */
     } else if (result > 0) {
         return 1;
 #endif
- /* <- keyword.control.import */
+ /* <- keyword.control.directive */
     }
 /*  ^ meta.block meta.block punctuation.section.block.end */
 /*   ^ - meta.block meta.block */
 
 #ifdef FOO
- /* <- keyword.control.import */
+ /* <- keyword.control.directive */
     int foobar
 /*      ^^^^^^ - entity.name.function */
     ;
 
     if (val == -1) {
 /*                 ^ meta.block meta.block punctuation.section.block.begin */
-#else
- /* <- keyword.control.import */
+#elifdef BAR
+ /* <- keyword.control.directive */
     if (val == -2) {
 /*                 ^ meta.block meta.block punctuation.section.block.begin */
+#elifndef BAZ
+ /* <- keyword.control.directive */
+    if (val == -3) {
+/*                 ^ meta.block meta.block punctuation.section.block.begin */
+#else
+ /* <- keyword.control.directive */
+    if (val == -4) {
+/*                 ^ meta.block meta.block punctuation.section.block.begin */
 #endif
- /* <- keyword.control.import */
+ /* <- keyword.control.directive */
         val += 1;
     }
 /*  ^ meta.block meta.block punctuation.section.block.end */
@@ -443,15 +687,15 @@ GetTextMetrics(
     )
 {
 #ifdef UNICODE
-/* <- keyword.control.import */
+/* <- keyword.control.directive */
     return GetTextMetricsW(
 /*         ^ variable.function */
 #else
-/* <- keyword.control.import */
+/* <- keyword.control.directive */
     return GetTextMetricsA(
 /*         ^ variable.function */
 #endif
-/* <- keyword.control.import */
+/* <- keyword.control.directive */
         hdc,
         lptm
         );
@@ -662,33 +906,38 @@ NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K like %@",
 /////////////////////////////////////////////
 
 #import <Cocoa/Cocoa.h>
-/* <- meta.preprocessor.import keyword.control.import.import */
+/* <- meta.preprocessor.import keyword.control.directive.import */
 
 #include <uchar.h>
-/* <- meta.preprocessor.include keyword.control.import.include */
+/* <- meta.preprocessor.include keyword.control.directive.include */
 
 #include "foobar.h"
-/* <- keyword.control.import.include */
+/* <- keyword.control.directive.include */
 /*       ^ punctuation.definition.string.begin */
 /*        ^^^^^^^^ string.quoted.double.include */
 /*                ^ punctuation.definition.string.end */
 
 #include <cstdlib>
-/* <- keyword.control.import.include */
+/* <- keyword.control.directive.include */
 /*       ^ punctuation.definition.string.begin */
 /*        ^^^^^^^ string.quoted.other.lt-gt.include */
 /*               ^ punctuation.definition.string.end */
 
 #ifdef _GLIBCXX_INCLUDE_NEXT_C_HEADERS
 #include_next <math.h>
-/* <- keyword.control.import.include */
+/* <- keyword.control.directive.include */
 /*            ^ punctuation.definition.string.begin */
 /*             ^^^^^^ string.quoted.other.lt-gt.include */
 /*                   ^ punctuation.definition.string.end */
 #endif
 
+static const unsigned char image_png[] = {
+#embed <image.png>
+/* <- keyword.control.directive.include */
+};
+
 #include<iostream>
-/* <- keyword.control.import.include */
+/* <- keyword.control.directive.include */
 /*      ^ punctuation.definition.string.begin */
 /*       ^^^^^^^^ string.quoted.other.lt-gt.include */
 /*               ^ punctuation.definition.string.end */
@@ -705,9 +954,8 @@ dec1 = 1234567890;
 /*               ^ punctuation.terminator - constant */
 
 dec2 = 1234567890f;
-/*     ^^^^^^^^^^^ meta.number.float.decimal.c */
 /*     ^^^^^^^^^^ constant.numeric.value.c */
-/*               ^ constant.numeric.suffix.c */
+/*               ^ invalid.illegal.numeric.suffix.c */
 /*                ^ punctuation.terminator - constant */
 
 dec3 = 1234567890L;
@@ -741,9 +989,9 @@ dec7 = 1234567890uLL;
 /*                  ^ punctuation.terminator - constant */
 
 dec8 = 1'234_567'890s0f;
-/*     ^ meta.number.integer.decimal.c constant.numeric.value.c */
-/*      ^^^^^^^^^ string.quoted.single */
-/*               ^^^^^^ meta.number.integer.decimal.c */
+/*     ^^^^^^^^^^^^^^^^ meta.number.integer.decimal.c */
+/*     ^^^^^ constant.numeric.value.c */
+/*          ^^^^ invalid.illegal.numeric.suffix.c */
 /*               ^^^ constant.numeric.value.c */
 /*                  ^^^ invalid.illegal.numeric.suffix.c */
 /*                     ^ punctuation.terminator - constant */
@@ -802,11 +1050,9 @@ hex1 = 0x0+0xFL+0xaull+0xallu+0xfu+0x'f'12_4uz;
 /*                            ^^ constant.numeric.base.c */
 /*                              ^ constant.numeric.value.c */
 /*                               ^ constant.numeric.suffix.c */
-/*                                 ^^ meta.number.integer.hexadecimal.c */
+/*                                 ^^^^^^^ meta.number.integer.hexadecimal.c */
 /*                                 ^^ constant.numeric.base.c */
-/*                                   ^^^ string.quoted.single.c */
-/*                                      ^^^^^^ meta.number.integer.decimal.c */
-/*                                      ^^ constant.numeric.value.c */
+/*                                   ^^^^^ constant.numeric.value.c */
 /*                                        ^^^^ invalid.illegal.numeric.suffix.c */
 /*                                            ^ punctuation.terminator - constant */
 

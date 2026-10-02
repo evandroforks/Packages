@@ -11,6 +11,7 @@ class MyClass extends TheirClass {
 //  ^ variable.other.readwrite
 //    ^ keyword.operator.assignment
 //      ^^ constant.numeric
+//        ^ punctuation.terminator.statement - punctuation.terminator.statement.empty
 
     'y' = 42;
 //  ^^^ meta.string string.quoted.single
@@ -31,11 +32,19 @@ class MyClass extends TheirClass {
 //      ^ keyword.operator.assignment
 //        ^^ constant.numeric
 
+    [w]
+    get other() {}
+//  ^^^ storage.type.accessor.js
+
     #v = 42;
 //  ^ punctuation.definition.variable
 //   ^ variable.other.readwrite
 //     ^ keyword.operator.assignment
 //       ^^ constant.numeric
+
+    #u
+    get other() {}
+//  ^^^ storage.type.accessor.js
 
     f = a => b;
 //  ^ entity.name.function variable.other.readwrite
@@ -113,9 +122,22 @@ class MyClass extends TheirClass {
     static = 42;
 //  ^^^^^^ variable.other.readwrite
 
+    static static = 42;
+//  ^^^^^^ storage.modifier.js
+//         ^^^^^^ variable.other.readwrite
+
     static() {}
 //  ^^^^^^^^^^^ meta.function
 //  ^^^^^^ entity.name.function
+
+    static static() {}
+//  ^^^^^^^^^^^^^^^^^^ meta.function
+//  ^^^^^^ storage.modifier.js
+//         ^^^^^^ entity.name.function
+
+    accessor foo;
+//  ^^^^^^^^ storage.modifier
+//           ^^^ variable.other.readwrite
 
     foo // You thought I was a field...
     () { return '...but was a method all along!'; }
@@ -130,7 +152,8 @@ class MyClass extends TheirClass {
         for (const param of this.#data.get('value')) {}
 //                               ^ punctuation.definition.variable
 //                                ^^^^ meta.property.object
-    }
+    };
+//   ^ punctuation.terminator.statement.empty.js
 
     #privateMethod() {}
 //  ^^^^^^^^^^^^^^^^^^^ meta.function
@@ -156,8 +179,13 @@ class MyClass extends TheirClass {
     }
 
     get *foo()
+//  ^^^^^^^^ meta.function
+//  ^^^ storage.type.accessor
+//      ^ keyword.generator.asterisk
+//       ^^^ entity.name.function
 
     static foo(baz) {
+//  ^^^^^^^^^^^^^^^^^ meta.function
 //  ^^^^^^ storage.modifier
 //         ^^^^^^^^^^ meta.function
     //     ^^^ entity.name.function

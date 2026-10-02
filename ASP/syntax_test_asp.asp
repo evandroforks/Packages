@@ -53,6 +53,16 @@
     '                        ^^^ comment.block.html punctuation.definition.comment.end.html
     '
 
+    <script> var i = <%=value%>; </script>
+    '  ^^^^^ meta.tag - source
+    '       ^^^^^^^^^^^^^^^^^^^^^ source.js.embedded.html
+    '                ^^^^^^^^^^ meta.embedded.asp
+    '                ^^^ punctuation.section.embedded.begin.asp
+    '                   ^^^^^ source.asp.embedded.html variable.other.asp
+    '                        ^^ punctuation.section.embedded.end.asp
+    '                            ^^^^^^^^^ meta.tag - source
+    '
+
     <script>
 
 ' <- source.js.embedded.html
@@ -72,13 +82,42 @@
     '  ^^^^^^^^^^^^ - source
     </script>
 
+    <script language="jscript"> var foo = 0 </script>
+    ' ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag - source
+    '       ^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.lang.html
+    '                          ^^^^^^^^^^^^^ source.js.embedded.html - meta.tag
+    '                                       ^^^^^^^^^ meta.tag - source
+
+    <script language=> Dim var = 0 </script>
+    ' ^^^^^^^^^^^^^^^^ meta.tag - source
+    '                 ^^^^^^^^^^^^^ source.asp.embedded.html - meta.tag
+    '                              ^^^^^^^^^ meta.tag - source
+
+    <script language=""> Dim var = 0 </script>
+    ' ^^^^^^^^^^^^^^^^^^ meta.tag - source
+    '                   ^^^^^^^^^^^^^ source.asp.embedded.html - meta.tag
+    '                                ^^^^^^^^^ meta.tag - source
+
+    <script language="vb"> Dim var = 0 </script>
+    ' ^^^^^^^^^^^^^^^^^^^^ meta.tag - source
+    '                     ^^^^^^^^^^^^^ source.asp.embedded.html - meta.tag
+    '                                  ^^^^^^^^^ meta.tag - source
+
+    <script language="vbscript"> Dim var = 0 </script>
+    ' ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag - source
+    '       ^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.lang.html
+    '                           ^^^^^^^^^^^^^ source.asp.embedded.html - meta.tag
+    '                                        ^^^^^^^^^ meta.tag - source
+
     <script type="vbscript"> Dim var = 0 </script>
     ' ^^^^^^^^^^^^^^^^^^^^^^ meta.tag - source
+    '       ^^^^^^^^^^^^^^^ meta.attribute-with-value.type.html
     '                       ^^^^^^^^^^^^^ source.asp.embedded.html - meta.tag
     '                                    ^^^^^^^^^ meta.tag - source
 
     <script type="vbscript"> Dim var = 0 --> </script>
     ' ^^^^^^^^^^^^^^^^^^^^^^ meta.tag - source
+    '       ^^^^^^^^^^^^^^^ meta.attribute-with-value.type.html
     '                       ^^^^^^^^^^^^^ source.asp.embedded.html - meta.tag
     '                                    ^^^^ - meta.tag - source
     '                                    ^^^ comment.block.html punctuation.definition.comment.end.html
@@ -126,21 +165,33 @@
             Dim var = 0
     '  ^^^^^^^^^^^^^^^^^ source.asp.embedded.html - meta.tag
         -->
-    ' <- source.asp.embedded.html
-    '^^^ source.asp.embedded.html
-    '   ^^^^ - meta.tag - source
+    ' <- - source
+    '^^^^^^^ - meta.tag - source
     '   ^^^ comment.block.html punctuation.definition.comment.end.html
     </script>
     ' ^^^^^^^ meta.tag - source
 
-    <style type="text/css"> <!-- h1 {} --> </style>
-    '  ^^^^^^^^^^^^^^^^^^^^ meta.tag - comment - source
-    '                      ^ - meta.tag - comment - source
-    '                       ^^^^ comment.block.html punctuation.definition.comment.begin.html - source
-    '                           ^^^^^^^ source.css.embedded.html
-    '                                  ^^^ comment.block.html punctuation.definition.comment.end.html - source
-    '                                     ^ - meta.tag - comment - source
-    '                                      ^^^^^^^^ meta.tag - comment - source
+    <script type="application/ld+json">
+        {
+            <% key %>: <%.Site.Color%>,
+        '  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.json.embedded.html
+        '   ^^^^^^^^^ meta.mapping.json meta.embedded.asp
+        '            ^^ meta.mapping.json - meta.embedded
+        '              ^^^^^^^^^^^^^^^ meta.mapping.value.json meta.embedded.asp
+        '                             ^ meta.mapping.json - meta.embedded
+
+            "<% key %>": "<%.Site.Color%>",
+        '  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.json.embedded.html
+        '   ^ meta.mapping.key.json string.quoted.double.json punctuation.definition.string.begin.json
+        '    ^^^^^^^^^ meta.mapping.key.json meta.embedded.asp - string
+        '             ^ meta.mapping.key.json string.quoted.double.json punctuation.definition.string.end.json
+        '              ^^ meta.mapping.json - meta.embedded
+        '                ^ meta.mapping.value.json meta.string.json string.quoted.double.json punctuation.definition.string.begin.json
+        '                 ^^^^^^^^^^^^^^^ meta.mapping.value.json meta.embedded.asp - string
+        '                                ^ meta.mapping.value.json meta.string.json string.quoted.double.json punctuation.definition.string.end.json
+        '                                 ^ meta.mapping.json - meta.embedded
+        }
+    </script>
 
     <style>
 
@@ -152,15 +203,74 @@
         <!--
     '  ^ - meta.tag - comment - source
     '   ^^^^ comment.block.html punctuation.definition.comment.begin.html - source
-    '       ^ source.css.embedded.html - comment
+    '       ^ - comment - source
             h1 {}
     '      ^^^^^^^ source.css.embedded.html
         -->
-    '  ^ source.css.embedded.html - comment
+    '  ^ - comment - source
     '   ^^^ comment.block.html punctuation.definition.comment.end.html - source
     '      ^ - meta.tag - comment - source
     </style>
     '  ^^^^^ meta.tag - comment - source
+
+
+    <style type="text/css"> <!-- h1 {} --> </style>
+    '  ^^^^^^^^^^^^^^^^^^^^ meta.tag - comment - source
+    '                      ^ - meta.tag - comment - source
+    '                       ^^^^ comment.block.html punctuation.definition.comment.begin.html - source
+    '                           ^^^^^^^ source.css.embedded.html
+    '                                  ^^^ comment.block.html punctuation.definition.comment.end.html - source
+    '                                     ^ - meta.tag - comment - source
+    '                                      ^^^^^^^^ meta.tag - comment - source
+
+    <style>
+        .<%=selector%> { <%=attr%>: <%=value%>; }
+    '   ^^^^^^^^^^^^^^^ source.css.embedded.html - meta.property-list - meta.block
+    '                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.css.embedded.html meta.property-list.css meta.block.css
+    '   ^ meta.selector.css entity.other.attribute-name.class.css punctuation.definition.entity.css
+    '    ^^^^^^^^^^^^^ meta.selector.css entity.other.attribute-name.class.css meta.embedded.asp
+    '    ^^^ punctuation.section.embedded.begin.asp
+    '       ^^^^^^^^ source.asp.embedded.html variable.other.asp
+    '               ^^ punctuation.section.embedded.end.asp
+    '                  ^ punctuation.section.block.begin.css
+    '                    ^^^^^^^^^ meta.property-name.css support.type.property-name.css meta.embedded.asp
+    '                             ^ punctuation.separator.key-value.css
+    '                               ^^^^^^^^^^ meta.property-value.css meta.embedded.asp
+    '                                         ^ punctuation.terminator.rule.css
+    '                                           ^ punctuation.section.block.end.css
+
+        .my-<%=selector%>--class { my-<%=attr%>--prop: a-<%=value%>-const; }
+    '   ^^^^^^^^^^^^^^^^^^^^^^^^^ source.css.embedded.html meta.selector.css - meta.property-list - meta.block
+    '                            ^^ source.css.embedded.html meta.property-list.css meta.block.css - meta.selector - meta.property-name
+    '                              ^^^^^^^^^^^^^^^^^^ source.css.embedded.html meta.property-list.css meta.block.css meta.property-name.css
+    '                                                ^ source.css.embedded.html meta.property-list.css meta.block.css - meta.selector - meta.property-name - meta.property-value
+    '                                                 ^^^^^^^^^^^^^^^^^^^ source.css.embedded.html meta.property-list.css meta.block.css meta.property-value.css
+    '                                                                    ^^^ source.css.embedded.html meta.property-list.css meta.block.css - meta.selector - meta.property-name - meta.property-value
+    '   ^^^^ entity.other.attribute-name.class.css - meta.embedded.asp
+    '   ^ punctuation.definition.entity.css
+    '       ^^^^^^^^^^^^^ entity.other.attribute-name.class.css meta.embedded.asp
+    '       ^^^ punctuation.section.embedded.begin.asp
+    '          ^^^^^^^^ source.asp.embedded.html variable.other.asp
+    '                  ^^ punctuation.section.embedded.end.asp
+    '                    ^^^^^^^ entity.other.attribute-name.class.css - meta.embedded.asp
+    '                            ^ punctuation.section.block.begin.css
+    '                              ^^^ support.type.property-name.css - meta.embedded
+    '                                 ^^^^^^^^^ support.type.property-name.css meta.embedded.asp
+    '                                 ^^^ punctuation.section.embedded.begin.asp
+    '                                    ^^^^ source.asp.embedded.html variable.other.asp
+    '                                        ^^ punctuation.section.embedded.end.asp
+    '                                          ^^^^^^ support.type.property-name.css - meta.embedded
+    '                                                ^ punctuation.separator.key-value.css
+    '                                                  ^^ support.constant.property-value.css - meta.embedded
+    '                                                    ^^^^^^^^^^ support.constant.property-value.css meta.embedded.asp
+    '                                                    ^^^ punctuation.section.embedded.begin.asp
+    '                                                       ^^^^^ source.asp.embedded.html variable.other.asp
+    '                                                            ^^ punctuation.section.embedded.end.asp
+    '                                                              ^^^^^^ support.constant.property-value.css - meta.embedded
+    '                                                                    ^ punctuation.terminator.rule.css
+    '                                                                      ^ punctuation.section.block.end.css
+    </style>
+
 </head>
 <body>
     <%
@@ -768,7 +878,7 @@
    '<- - meta.between-if-and-then.asp
    '^^^^^^^^ keyword.control.flow.asp
    '         ^^^^^^ variable.other.asp
-   '                ^^ keyword.control.flow.asp
+   '                ^^ keyword.control.loop.in.asp
    '                                  ^ meta.for.block.asp
         Response.Write(vbCrLf & cookie)
        '^^^^^^^^ support.class.asp
@@ -1121,10 +1231,10 @@ test = "hello%>
 <%
         for each item in list
        '^^^^^^^^ text.html.asp source.asp.embedded.html meta.method.asp meta.method.body.asp meta.for.block.asp keyword.control.flow.asp
-       '              ^^ text.html.asp source.asp.embedded.html meta.method.asp meta.method.body.asp meta.for.block.asp keyword.control.flow.asp
+       '              ^^ text.html.asp source.asp.embedded.html meta.method.asp meta.method.body.asp meta.for.block.asp keyword.control.loop.in.asp
             %><li><%= item %></li><%
                     '^^^^^^ text.html.asp source.asp.embedded.html meta.method.asp meta.method.body.asp meta.for.block.asp
-           '  ^ meta.tag.inline.any.html punctuation.definition.tag.begin.html
+           '  ^ punctuation.definition.tag.begin.html
            '      ^^^ punctuation.section.embedded.begin.inside-block.asp
            '               ^^ punctuation.section.embedded.end.inside-block.asp
         Next
@@ -1138,10 +1248,10 @@ test = "hello%>
 '^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.block.any.html
 '                                         ^^^^^^^^^ meta.tag.block.any.html
 '   ^^^^^ meta.attribute-with-value.class.html entity.other.attribute-name.class.html
-'         ^ meta.attribute-with-value.class.html meta.string.html string.quoted.double.html - meta.interpolation
-'          ^^ meta.attribute-with-value.class.html  meta.string.html meta.interpolation.html - string
-'                                   ^^^^^^^^^ meta.attribute-with-value.class.html meta.string.html meta.interpolation.html - string
-'                                            ^ meta.attribute-with-value.class.html meta.string.html string.quoted.double.html - meta.interpolation
+'         ^ meta.attribute-with-value.class.html meta.string.html string.quoted.double.html - meta.embedded
+'          ^^ meta.attribute-with-value.class.html meta.string.html meta.embedded.asp - string
+'                                   ^^^^^^^^^ meta.attribute-with-value.class.html meta.string.html meta.embedded.asp - string
+'                                            ^ meta.attribute-with-value.class.html meta.string.html string.quoted.double.html - meta.embedded
 '                                             ^ - string
 '          ^^^^^^^^^^^^^^^^ meta.class-name.html
 '                                  ^^^^^^^^^^ meta.class-name.html
@@ -1267,6 +1377,97 @@ test = "hello%>
 '           ^ comment
 
 '<- - comment - source.asp.embedded.html
+
+<![CDATA[Text with <%= vbscript %> interpolation.]]>
+'        ^^^^^^^^^^ meta.tag.sgml.cdata.html meta.string.html string.unquoted.cdata.html
+'                  ^^^^^^^^^^^^^^^ meta.tag.sgml.cdata.html meta.string.html meta.embedded.asp - string
+'                                 ^^^^^^^^^^^^^^^ meta.tag.sgml.cdata.html meta.string.html string.unquoted.cdata.html
+'                  ^^^ punctuation.section.embedded.begin.asp
+'                               ^^ punctuation.section.embedded.end.asp
+
+  <my-<%=tag%> <%=attr%>=<%=value%>/>
+' ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.other.html
+' ^ meta.tag.other.html punctuation.definition.tag.begin.html
+'  ^^^ entity.name.tag.other.html - meta.embedded
+'     ^^^^^^^^ entity.name.tag.other.html meta.embedded.asp
+'     ^^^ punctuation.section.embedded.begin.asp 
+'        ^^^ variable.other.asp
+'           ^^ punctuation.section.embedded.end.asp
+'              ^^^^^^^^^ meta.attribute-with-value.html entity.other.attribute-name.html meta.embedded.asp
+'              ^^^ punctuation.section.embedded.begin.asp 
+'                 ^^^^ variable.other.asp
+'                     ^^ punctuation.section.embedded.end.asp
+'                       ^ meta.attribute-with-value.html punctuation.separator.key-value.html
+'                        ^^^^^^^^^^ meta.attribute-with-value.html meta.string.html meta.embedded.asp
+'                        ^^^ punctuation.section.embedded.begin.asp 
+'                           ^^^^^ variable.other.asp
+'                                ^^ punctuation.section.embedded.end.asp
+'                                  ^^ punctuation.definition.tag.end.html
+
+  <<%=tag%> <%=attr%>=<%=value%>/>
+' ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.other.html
+' ^ meta.tag.other.html punctuation.definition.tag.begin.html
+'  ^^^^^^^^ entity.name.tag.other.html meta.embedded.asp
+'  ^^^ punctuation.section.embedded.begin.asp 
+'     ^^^ variable.other.asp
+'        ^^ punctuation.section.embedded.end.asp
+'           ^^^^^^^^^ meta.attribute-with-value.html entity.other.attribute-name.html meta.embedded.asp
+'           ^^^ punctuation.section.embedded.begin.asp 
+'              ^^^^ variable.other.asp
+'                  ^^ punctuation.section.embedded.end.asp
+'                    ^ meta.attribute-with-value.html punctuation.separator.key-value.html
+'                     ^^^^^^^^^^ meta.attribute-with-value.html meta.string.html meta.embedded.asp
+'                     ^^^ punctuation.section.embedded.begin.asp 
+'                        ^^^^^ variable.other.asp
+'                             ^^ punctuation.section.embedded.end.asp
+'                               ^^ punctuation.definition.tag.end.html
+
+<!-- 
+ --- Git Conflict Marker Tests 
+ -->
+
+<<<<<<< HEAD
+'  <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+' ^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+'      ^ meta.block.conflict.begin.diff - entity - punctuation
+'       ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+'           ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+'  <- meta.block.conflict.separator.diff punctuation.section.block.diff
+' ^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+'      ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+'  <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+' ^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+'      ^ meta.block.conflict.end.diff - entity - punctuation
+'       ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+'             ^ meta.block.conflict.end.diff - entity - punctuation
+
+<%
+
+<<<<<<< HEAD
+'  <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+' ^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+'      ^ meta.block.conflict.begin.diff - entity - punctuation
+'       ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+'           ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+'  <- meta.block.conflict.separator.diff punctuation.section.block.diff
+' ^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+'      ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+'  <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+' ^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+'      ^ meta.block.conflict.end.diff - entity - punctuation
+'       ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+'             ^ meta.block.conflict.end.diff - entity - punctuation
+
+%>
+
  </body>
 '^^^^^^^ meta.tag.structure.any.html
 <script type="text/javascript">

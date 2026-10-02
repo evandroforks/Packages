@@ -24,6 +24,29 @@ multiline comment
 #^^^^^^^^^^^^^^^^^ comment.line.number-sign.makefile
 
 #################################
+# Merge Conflict Markers        #
+#################################
+
+<<<<<<< HEAD
+#  <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+# ^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+#      ^ meta.block.conflict.begin.diff - entity - punctuation
+#       ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+#           ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+#  <- meta.block.conflict.separator.diff punctuation.section.block.diff
+# ^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+#      ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+#  <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+# ^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+#      ^ meta.block.conflict.end.diff - entity - punctuation
+#       ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+#             ^ meta.block.conflict.end.diff - entity - punctuation
+
+#################################
 # 6.3.1 substitution references #
 #################################
 
@@ -51,23 +74,44 @@ foo := a.o b.o c.o
 # <- variable
 #   ^^ keyword
 #      ^^^^^^^^^^^ string
+
+bar := $(foo)
+#     ^ - meta.string - meta.interpolation - string.unquoted
+#      ^^^^^^ meta.string.makefile meta.interpolation.makefile
+#      ^^ keyword.other.block.begin.makefile
+#        ^^^ variable.parameter.makefile
+#           ^ keyword.other.block.end.makefile
+#            ^ - meta.string - meta.interpolation - string.unquoted
+
 bar := $(foo:.o=.c)
 # <- variable
 #   ^^ keyword
 #      ^^ keyword.other.block.begin
-#           ^ punctuation
-#              ^ punctuation
+#        ^^^ variable.parameter
+#           ^ punctuation.definition.substitution
+#              ^ keyword.operator.assignment
 #                 ^ keyword.other.block.end
+
 bar := $(foo:%.o=%.c)
 # <- variable
 #   ^^ keyword
-#     ^ - string.unquoted
+#     ^ - meta.string - meta.interpolation - string.unquoted
+#      ^^^^^^^^^^^^^^ meta.string.makefile meta.interpolation.makefile - meta.interpolation meta.interpolation
+#                    ^ - meta.string - meta.interpolation - string.unquoted
 #      ^^ keyword.other.block.begin
 #           ^ punctuation
 #            ^ variable.language
-#               ^ punctuation
+#               ^ keyword.operator
 #                ^ variable.language
 #                   ^ keyword.other.block.end
+
+bar := ${foo}
+#     ^ - meta.string - meta.interpolation - string.unquoted
+#      ^^^^^^ meta.string.makefile meta.interpolation.makefile
+#      ^^ keyword.other.block.begin.makefile
+#        ^^^ variable.parameter.makefile
+#           ^ keyword.other.block.end.makefile
+#            ^ - meta.string - meta.interpolation - string.unquoted
 
 bar := ${foo:%.o=%.c}
 # <- variable
@@ -76,7 +120,7 @@ bar := ${foo:%.o=%.c}
 #      ^^ keyword.other.block.begin
 #           ^ punctuation
 #            ^ variable.language
-#               ^ punctuation
+#               ^ keyword.operator
 #                ^ variable.language
 #                   ^ keyword.other.block.end
 
@@ -106,7 +150,7 @@ $(dir)_sources := $(wildcard $(dir)/*.c)
 #                 ^^ keyword.other.block.begin
 #                            ^^ keyword.other.block.begin
 #                                 ^ keyword.other.block.end
-#                                   ^ variable.language.wildcard
+#                                   ^ constant.other.wildcard.asterisk
 #                                      ^ keyword.other.block.end
 define $(dir)_print =
 # ^ keyword.control
@@ -127,6 +171,14 @@ Y := 3
 endef   # comment
 #^^^^ keyword.control.makefile
 #       ^^^ comment.line.number-sign.makefile
+
+# Avoid false positives such as partial matches.
+
+foodefine
+#^^^^^^^^^ - keyword
+
+definefoo
+#^^^^^^^^^ - keyword
 
 #########################
 # 6.5 setting variables #
@@ -200,6 +252,38 @@ endef
 endef
 # <- invalid.illegal.stray
 
+override \
+# <- keyword.control.makefile
+#        ^ punctuation.separator.continuation.line.makefile
+
+override \
+	define foo
+	#^^^^^ keyword.control.makefile
+	#      ^^^ variable.other.makefile
+endef
+# <- keyword.control.makefile
+
+
+#############################
+# 6.11 undefining variables #
+#############################
+
+undefine foo
+#^^^^^^^ keyword.control.makefile
+#       ^^^^ -keyword
+
+  undefine foo
+# ^^^^^^^^ keyword.control.makefile
+#         ^^^^ -keyword
+
+# Avoid false positives such as partial matches.
+
+undefined
+#^^^^^^^^^ - keyword
+
+nundefine
+#^^^^^^^^^ - keyword
+
 ########################################
 # 6.11 target-specific variable values #
 ########################################
@@ -210,6 +294,13 @@ prog : CFLAGS = -g
 #             ^ keyword
 #              ^ - string
 #               ^^ string - meta.function.arguments
+
+$(prog) : CFLAGS = -g
+#       ^ keyword.operator
+#         ^ variable - string
+#                ^ keyword
+#                 ^ - string
+#                  ^^ string - meta.function.arguments
 
 #########################################
 # 6.12 pattern-specific variable values #
@@ -232,17 +323,17 @@ lib/%.o: CFLAGS := -fPIC -g
 ifeq ($(shell test -r $(MAKEFILE_PATH)Makefile.Defs; echo $$?), 0)
 # <- keyword.control
 #       ^ support.function
-#                     ^^ variable.parameter keyword.other.block.begin
+#                     ^^ keyword.other.block.begin
 #                       ^^^^^^^^^^^^^ variable.parameter
-#                                    ^ variable.parameter keyword.other.block.end
+#                                    ^ keyword.other.block.end
 #                                                         ^^^ variable.language.automatic
     include $(MAKEFILE_PATH)Makefile.Defs
     # <- keyword.control
     #      ^ - string
     #       ^ string
-    # IMPORTANT NOTE: Extra spaces are allowed and ignored at the beginning of 
-    # the line, but the first character must not be a tab (or the value of 
-    # .RECIPEPREFIX) — if the line begins with a tab, it will be considered a 
+    # IMPORTANT NOTE: Extra spaces are allowed and ignored at the beginning of
+    # the line, but the first character must not be a tab (or the value of
+    # .RECIPEPREFIX) — if the line begins with a tab, it will be considered a
     # recipe line.
 endif
 # <- keyword.control
@@ -287,7 +378,7 @@ all: foo.o # a comment
 #    ^ string
 #        ^ meta.function.arguments string.unquoted
 #         ^ string
-#          ^ comment.line. punctuation - meta.function.arguments - string.unquoted 
+#          ^ comment.line. punctuation - meta.function.arguments - string.unquoted
 #           ^ comment.line - punctuation - meta.function.arguments - string.unquoted
 	rm -rf /
 # <- meta.function.body
@@ -301,22 +392,23 @@ foo: qux
 sources := $($(a1)_objects:.o=.c)
 # ^ variable
 #       ^^ keyword.operator
-#          ^^ string variable keyword.other.block.begin
-#            ^^ string variable variable keyword.other.block.begin
+#          ^^ string keyword.other.block.begin
+#            ^^ string variable keyword.other.block.begin
 #              ^^ string variable variable
-#                ^ string variable variable keyword.other.block.end
+#                ^ meta.interpolation meta.interpolation keyword.other.block.end
 #                 ^^^^^^^^ string variable
-#                         ^ string variable punctuation.definition
-#                          ^^ string variable
-#                            ^ string variable punctuation.definition
-#                             ^^ string variable
-#                               ^ string variable keyword.other.block.end
+#                         ^ string punctuation.definition
+#                          ^^ string
+#                            ^ string keyword.operator
+#                             ^^ string
+#                               ^ string keyword.other.block.end
 
 .build/vernum: ../meta/version
     sed -i.bak 's/.*automatically updated.*/version = "$(VER)" # automatically updated/' setup.py
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.body.makefile source.shell.embedded meta.function-call
 #              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.single - comment
-#                                                      ^^^^^^ variable.parameter.makefile
+#                                                      ^^^^^^ meta.interpolation
+#                                                        ^^^ variable.parameter.makefile
 
 CC=g++
 #<- variable.other
@@ -331,8 +423,8 @@ OBJECTS=$(SOURCES:.cpp=.o)
 #<- variable.other
 #      ^ keyword.operator.assignment
 #       ^^ string.unquoted keyword.other.block.begin
-#                ^ string.unquoted variable.parameter punctuation.definition.substitution
-#                     ^ string.unquoted variable.parameter punctuation.definition
+#                ^ string.unquoted punctuation.definition.substitution
+#                     ^ string.unquoted keyword.operator.assignment
 #                        ^ string.unquoted keyword.other.block.end
 EXECUTABLE=hello
 
@@ -343,18 +435,18 @@ lib: foo.o bar.o lose.o win.o
 	# <- meta.function.body
 	# BIG NOTE: This comment is actually a shell comment, not a makefile
 	# comment. Everything on a recipe line is passed to the shell; even lines
-	# starting with a numbrer sign! It depends on the particular shell if it 
+	# starting with a number sign! It depends on the particular shell if it
 	# gets treated as comments, but for all intents and purposes it should.
 
 all: $(SOURCES) $(EXECUTABLE)
 #<- entity.name.function
 #  ^ keyword.operator.assignment
-#    ^^ variable.parameter keyword.other.block.begin
+#    ^^ keyword.other.block.begin
 #      ^^^^^^^ variable.parameter
-#             ^ variable.parameter keyword.other.block.end
-#               ^^ variable.parameter keyword.other.block.begin
+#             ^ keyword.other.block.end
+#               ^^ keyword.other.block.begin
 #                 ^^^^^^^^^^ variable.parameter
-#                           ^ variable.parameter keyword.other.block.end
+#                           ^ keyword.other.block.end
 
 export FOO=foo
 # ^ keyword.control
@@ -434,7 +526,7 @@ pathsearch = $(firstword $(wildcard $(addsuffix /$(1),$(subst :, ,$(PATH)))))
 #                                                                ^ punctuation.separator
 #                                                                 ^^ keyword.other.block.begin
 #                                                                   ^^^^ meta.function-call.arguments meta.function-call.arguments meta.function-call.arguments meta.function-call.arguments variable.parameter
-#                                                                       ^ meta.function-call.arguments meta.function-call.arguments meta.function-call.arguments meta.function-call.arguments variable.parameter keyword.other.block.end
+#                                                                       ^ meta.function-call.arguments meta.function-call.arguments meta.function-call.arguments meta.function-call.arguments keyword.other.block.end
 #                                                                        ^ meta.function-call.arguments meta.function-call.arguments meta.function-call.arguments keyword.other.block.end
 #                                                                         ^ meta.function-call.arguments meta.function-call.arguments keyword.other.block.end
 #                                                                          ^ meta.function-call.arguments keyword.other.block.end
@@ -447,9 +539,9 @@ LS := $(call pathsearch,ls)
 
 sinclude $(MAKEFILE_PATH)Makefile.Defs
 # <- keyword.control.import
-#        ^ string.unquoted variable.parameter keyword.other.block.begin
+#        ^ string.unquoted keyword.other.block.begin
 #          ^ string.unquoted variable.parameter
-#                       ^ string.unquoted variable.parameter keyword.other.block.end
+#                       ^ string.unquoted keyword.other.block.end
 
 
 CC=g++
@@ -498,10 +590,10 @@ export RCS_TAR_IGNORE := --exclude SCCS --exclude BitKeeper --exclude .svn \
              --exclude CVS --exclude .pc --exclude .hg --exclude .git
 
 # Use spaces instead of tabs... This complicates matters.
-.RECIPEPREFIX += 
+.RECIPEPREFIX +=
 
 help::
-	@echo "Excutable is $(EXECUTABLE)"
+	@echo "Executable is $(EXECUTABLE)"
 	# <- constant.language
 
 $(warning he:llo)
@@ -519,7 +611,7 @@ deps:
 	# ^ meta.function-call support.function
 	#         ^^^ meta.function-call.arguments.makefile - punctuation
 	#               ^ keyword.other.block.end
-all: 
+all:
 # ^ meta.function entity.name.function
 #  ^ keyword.operator.assignment
 	asdf
@@ -550,7 +642,7 @@ a_percentage_%_sign := $(SOME_C%MPLEX:SUBSTITUTI%N)
 #            ^ variable.other - variable.language
 #                              ^ string.unquoted variable.parameter variable.language
 #                                    ^ punctuation
-#                                               ^ string.unquoted variable.parameter variable.language
+#                                               ^ string.unquoted variable.language
 
 %.cpp: %.o
 # <- meta.function entity.name.function variable.language
@@ -646,7 +738,8 @@ $(a:b=c) : d
 	#                    ^^ meta.function.body variable.language.automatic
 
 $(X:a=b) : w ;
-# <- meta.function entity.name.function variable.parameter keyword.other.block.begin
+# <- meta.function entity.name.function keyword.other.block.begin
+# ^ variable.parameter
 #        ^ keyword.operator
 #          ^ meta.function.arguments string.unquoted
 #           ^ - string.unquoted
@@ -798,12 +891,12 @@ endif
 
 vpath dir/*/whatevs whatevs
 # ^ keyword.control.vpath
-#         ^ variable.language.wildcard
+#         ^ constant.other.wildcard.asterisk
 #                   ^ string.unquoted.makefile
 
 vpath asdf/*
 # ^ keyword.control.vpath
-#          ^ variable.language.wildcard
+#          ^ constant.other.wildcard.asterisk
 vpath
 # ^ keyword.control.vpath.makefile
 
@@ -821,7 +914,7 @@ revision.tex: $(VCSTURD)
     /bin/echo '\newcommand{\Revision}'"{$(subst _,\_,$(REVISION))}" > $@
     #           ^ - invalid.illegal
     #                                     ^ meta.function-call.makefile
-    #                                                ^^ meta.function.body meta.function-call.arguments variable.parameter
+    #                                                  ^^ meta.function.body meta.function-call.arguments variable.parameter
 AUXFILES += revision.aux
 endif
 
@@ -859,7 +952,7 @@ kselftest-merge:
 search:
     @$(MAKE) --no-print-directory \
         -f core/core.mk $(addprefix -f,$(wildcard index/*.mk)) -f core/index.mk \
-    #                                                   ^ variable.language.wildcard
+    #                                                   ^ constant.other.wildcard.asterisk
         search
 
 CC_VERSION := $(shell $(CC) -dumpversion)
@@ -959,7 +1052,7 @@ TESTTOOL = sh -c '\
   fi' TESTTOOL
 # ^^^ meta.string.makefile meta.interpolation.makefile
 #    ^^^^^^^^^ meta.string.makefile string.unquoted.makefile - meta.interpolation
-# ^^ source.shell.embedded keyword.control.conditional.end.shell - source.shell source.shell
+# ^^ source.shell.embedded keyword.control.conditional.endif.shell - source.shell source.shell
 #   ^ punctuation.section.interpolation.end.makefile
 
 
@@ -969,9 +1062,62 @@ html:
 #   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.body.makefile source.shell.embedded.makefile - source.shell source.shell
 #   ^^^^^^^^^^ meta.function-call.identifier.shell
 #             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.shell
-#              ^^^^^^^^^^^ variable.parameter.makefile
+#                ^^^^^^^^ variable.parameter.makefile
 #                          ^^ variable.parameter.option.shell
-#                             ^^^^^^^^^^^ variable.parameter.makefile
+#                               ^^^^^^^^^ variable.parameter.makefile
 #                                          ^^ variable.parameter.option.shell
-#                                             ^^^^^^^^^^^ variable.parameter.makefile
-#                                                         ^^^^^^^^^^^^^^ variable.parameter.makefile
+#                                               ^^^^^^^^ variable.parameter.makefile
+#                                                           ^^^^^^^^^^^ variable.parameter.makefile
+
+shell_string_interpolation:
+    var1="double nquoted $(string) value"
+    #    ^^^^^^^^^^^^^^^^ string.quoted.double.shell
+    #    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.body.makefile source.shell.embedded.makefile meta.string.glob.shell
+    #                    ^^^^^^^^^ meta.interpolation
+    #                    ^^ keyword.other.block.begin.makefile
+    #                      ^^^^^^ variable.parameter.makefile
+    #                            ^ keyword.other.block.end.makefile
+    #                             ^^^^^^^ string.quoted.double.shell
+    var1='single nquoted $(string) value'
+    #    ^^^^^^^^^^^^^^^^ string.quoted.single.shell
+    #    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.body.makefile source.shell.embedded.makefile meta.string.glob.shell
+    #                    ^^^^^^^^^ meta.interpolation
+    #                    ^^ keyword.other.block.begin.makefile
+    #                      ^^^^^^ variable.parameter.makefile
+    #                            ^ keyword.other.block.end.makefile
+    #                             ^^^^^^^ string.quoted.single.shell
+    var1=unquoted\ $(string)\ value
+    #    ^^^^^^^^^^ string.unquoted.shell
+    #    ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.body.makefile source.shell.embedded.makefile meta.string.glob.shell
+    #              ^^^^^^^^^ meta.interpolation
+    #              ^^ keyword.other.block.begin.makefile
+    #                ^^^^^^ variable.parameter.makefile
+    #                      ^ keyword.other.block.end.makefile
+    #                       ^^^^^^^ string.unquoted.shell
+
+# https://www.gnu.org/software/make/manual/html_node/Errors.html
+clean:
+	-rm -f *.o
+	# <- constant.language.makefile
+	#^^ variable.function.shell
+
+foo:
+	echo $$foo
+	#    ^ constant.character.escape.makefile
+	#     ^ punctuation.definition.variable.shell
+	#     ^^^^ variable.other.readwrite.shell
+	foo $$(echo $$PATH)
+	#   ^ constant.character.escape.makefile
+	#    ^ punctuation
+	#     ^ punctuation.section.interpolation.begin.shell
+	#      ^^^^ support.function.shell
+	#           ^ constant.character.escape.makefile
+	#            ^ punctuation.definition.variable.shell
+	#            ^^^^^ variable.language.builtin.shell
+
+	test "$$abc" = "$$def"
+	# ^ support.function.shell
+	#    ^^^^^^^ string.quoted.double.shell
+	#     ^ constant.character.escape.makefile
+	#      ^ punctuation.definition.variable.shell
+	#       ^^^ variable.other.readwrite.shell

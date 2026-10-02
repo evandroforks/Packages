@@ -38,6 +38,180 @@
 --  ^^^ comment.block punctuation.definition.comment.end
 --     ^ - comment
 
+---@param name_of_parameter Type @EmmyLua style doc comment
+-- <- comment.line.documentation.lua punctuation.definition.comment.lua
+ -- <- comment.line.documentation.lua punctuation.definition.comment.lua
+--^ comment.line.documentation.lua punctuation.definition.comment.lua
+-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.documentation.lua
+-- ^^^^^^ entity.name.tag.documentation.lua
+--        ^^^^^^^^^^^^^^^^^ variable.parameter.lua
+
+---@return Type|Othertype @the description of the return value
+-- ^^^^^^^ comment.line.documentation.lua entity.name.tag.documentation.lua
+
+---@unknowntagname
+-- ^^^^^^^^^^^^^^^ comment.line.documentation.lua entity.name.tag.documentation.custom.lua
+
+--- LDoc style doc comment.
+-- <- comment.line.documentation.lua punctuation.definition.comment.lua
+--^ comment.line.documentation.lua punctuation.definition.comment.lua
+-- ^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.documentation.lua
+-- Description; this can extend over
+-- several lines
+-- ^^^^^^^^^^^^^^ comment.line.documentation.lua
+-- NOTE: The following comments with @tags start with a triple-dash to prevent being recognized as symbol tests by ST.
+--       The triple-dash is not required for consecutive doc comment lines by LDoc.
+--- @section section name
+--^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.documentation.lua
+--  ^^^^^^^^ entity.name.tag.documentation.lua
+--           ^^^^^^^^^^^^ entity.name.section.lua
+--- @param name_of_parameter the description of this parameter as verbose text
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.documentation.lua
+--  ^^^^^^ entity.name.tag.documentation.lua
+--         ^^^^^^^^^^^^^^^^^ variable.parameter.lua
+--- @param[opt] name_of_parameter the description of this parameter as verbose text
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.documentation.lua
+--  ^^^^^^ entity.name.tag.documentation.lua
+--              ^^^^^^^^^^^^^^^^^ variable.parameter.lua
+--- @param[type=number] name_of_parameter the description of this parameter as verbose text
+--^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.documentation.lua
+--  ^^^^^^ entity.name.tag.documentation.lua
+--                      ^^^^^^^^^^^^^^^^^ variable.parameter.lua
+--- @return the description of the return value
+--  ^^^^^^^ entity.name.tag.documentation.lua
+--- @unknowntagname
+--  ^^^^^^^^^^^^^^^ entity.name.tag.documentation.custom.lua
+-- text @return text
+--      ^^^^^^^ - entity
+
+-- no more doc comment after empty line
+-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ - comment.line.documentation
+
+--- Another doc comment
+    --[=[ block comments after should work with an equals
+--  ^^^^^ comment.block punctuation.definition.comment.begin
+    commented
+--  ^^^^^^^^^ comment.block
+    ]=]
+--  ^^^ comment.block punctuation.definition.comment.end
+
+-----------------
+--^^^^^^^^^^^^^^^ comment.line.documentation.lua punctuation.definition.comment.lua
+-- This will also do.
+-- ^^^^^^^^^^^^^^^^^^^ comment.line.documentation.lua
+
+    --- LDoc style doc comment with indentation.
+    -- Description
+--^^ - comment
+--  ^^^^^^^^^^^^^^^ comment.line.documentation.lua
+--  ^^ punctuation.definition.comment.lua
+    --- @param name_of_parameter the description of this parameter as verbose text
+--^^ - comment
+--  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment.line.documentation.lua
+--  ^^^ punctuation.definition.comment.lua
+--      ^^^^^^ entity.name.tag.documentation.lua
+--             ^^^^^^^^^^^^^^^^^ variable.parameter.lua
+
+    --[[--
+--  ^^^^^^ comment.block.documentation.lua punctuation.definition.comment.begin.lua
+        Summary. A description
+        @section section name
+--      ^^^^^^^^ entity.name.tag.documentation.lua
+--               ^^^^^^^^^^^^ entity.name.section.lua
+        @param name_of_parameter the description of this parameter as verbose text
+--      ^^^^^^ entity.name.tag.documentation.lua
+--             ^^^^^^^^^^^^^^^^^ variable.parameter.lua
+        @return the description of the return value
+--      ^^^^^^^ entity.name.tag.documentation.lua
+        @unknowntagname
+--      ^^^^^^^^^^^^^^^ entity.name.tag.documentation.custom.lua
+    ]]
+--  ^^ comment.block.documentation.lua punctuation.definition.comment.end.lua
+
+    --[[--
+--  ^^^^^^ comment.block.documentation.lua punctuation.definition.comment.begin.lua
+        @section section name ]
+--               ^^^^^^^^^^^^^^ entity.name.section.lua
+        @section section name ]]
+--               ^^^^^^^^^^^^ entity.name.section.lua
+--                            ^^ punctuation.definition.comment.end.lua - entity.name.section
+--                              ^ - comment
+
+    ---
+    -- line doc comment followed by block comment
+    --[[
+--  ^^^^ comment.block.lua punctuation.definition.comment.begin.lua - comment.line
+    ]]
+
+--
+-- Merge Conflict Marker Tests
+--
+
+--[[ Merge conflicts in comments
+
+<<<<<<< HEAD
+// <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//     ^ meta.block.conflict.begin.diff - entity - punctuation
+//      ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+//          ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+// <- meta.block.conflict.separator.diff punctuation.section.block.diff
+//^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+//     ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+// <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+//^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+//     ^ meta.block.conflict.end.diff - entity - punctuation
+//      ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+//            ^ meta.block.conflict.end.diff - entity - punctuation
+]]
+
+--[=[ Merge conflicts in docblock comments
+
+<<<<<<< HEAD
+// <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//     ^ meta.block.conflict.begin.diff - entity - punctuation
+//      ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+//          ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+// <- meta.block.conflict.separator.diff punctuation.section.block.diff
+//^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+//     ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+// <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+//^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+//     ^ meta.block.conflict.end.diff - entity - punctuation
+//      ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+//            ^ meta.block.conflict.end.diff - entity - punctuation
+]=]
+
+-- Top-level merge conflicts
+
+<<<<<<< HEAD
+-- <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+--^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+--     ^ meta.block.conflict.begin.diff - entity - punctuation
+--      ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+--          ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+-- <- meta.block.conflict.separator.diff punctuation.section.block.diff
+--^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+--     ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+-- <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+--^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+--     ^ meta.block.conflict.end.diff - entity - punctuation
+--      ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+--            ^ meta.block.conflict.end.diff - entity - punctuation
+
 --VARIABLES
 
     foo;
@@ -49,10 +223,10 @@
 --CONSTANTS
 
     true;
---  ^^^^ constant.language.boolean.lua
+--  ^^^^ constant.language.boolean.true
 
     false;
---  ^^^^^ constant.language.boolean.lua
+--  ^^^^^ constant.language.boolean.false
 
     nil;
 --  ^^^ constant.language.null
@@ -245,7 +419,7 @@
 
     not true;
 --  ^^^ keyword.operator.logical
---      ^^^^ constant.language.boolean.lua
+--      ^^^^ constant.language.boolean.true
 
     2 + 2 - 2 * 2 / 2 // 2 % 2 ^ 2;
 --    ^ keyword.operator.arithmetic
@@ -393,7 +567,7 @@
     foo[return] foo[false]
 --      ^^^^^^ invalid.unexpected-keyword.lua
 --            ^ - meta.brackets
---                  ^^^^^ constant.language.boolean.lua
+--                  ^^^^^ constant.language.boolean.false
 
     some.return
 --       ^^^^^^ invalid.unexpected-keyword.lua
@@ -551,7 +725,7 @@
 --      ^^^ invalid.illegal.unexpected-end
     until true;
 --  ^^^^^ keyword.control.loop
---        ^^^^ constant.language.boolean.lua
+--        ^^^^ constant.language.boolean.true
 
     for x = 1, y, z do end
 --  ^^^ keyword.control.loop
@@ -623,6 +797,15 @@
 --                 ^ keyword.operator.assignment
 --                   ^ meta.number.integer.decimal constant.numeric.value
 --                    ^ punctuation.terminator.statement
+
+    a, b = c, d
+--  ^ variable.other
+--   ^ punctuation.separator.comma
+--     ^ variable.other
+--       ^ keyword.operator.assignment
+--         ^ variable.other
+--          ^ punctuation.separator.comma
+--            ^ variable.other
 
     local x <const>, y <  const  > = 1, 2;
 --  ^^^^^ storage.modifier.lua

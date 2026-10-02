@@ -1,14 +1,40 @@
 // SYNTAX TEST "Packages/Groovy/Groovy.sublime-syntax"
 
+// Merge Conflict Marker Tests
+
+<<<<<<< HEAD
+// <- meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//^^^^^ meta.block.conflict.begin.diff punctuation.section.block.begin.diff
+//     ^ meta.block.conflict.begin.diff - entity - punctuation
+//      ^^^^ meta.block.conflict.begin.diff entity.name.section.diff
+//          ^ meta.block.conflict.begin.diff - entity - punctuation
+
+=======
+// <- meta.block.conflict.separator.diff punctuation.section.block.diff
+//^^^^^ meta.block.conflict.separator.diff punctuation.section.block.diff
+//     ^ meta.block.conflict.separator.diff - punctuation
+
+>>>>>>> master
+// <- meta.block.conflict.end.diff punctuation.section.block.end.diff
+//^^^^^ meta.block.conflict.end.diff punctuation.section.block.end.diff
+//     ^ meta.block.conflict.end.diff - entity - punctuation
+//      ^^^^^^ meta.block.conflict.end.diff entity.name.section.diff
+//            ^ meta.block.conflict.end.diff - entity - punctuation
+
+  this super
+//^^^^ variable.language.this.groovy
+//     ^^^^^ variable.language.super.groovy
+
 // Tests for issue 1260
 
 def defectiveSyntaxTest(String value) {
-// <- storage.type.return-type
-//  ^ entity.name.function
-//                    ^ entity.name.function
-//                      ^ storage.type.parameter
-//                             ^ variable.parameter
-	println value
+// <- meta.definition.method.groovy keyword.declaration.function.groovy
+//  ^^^^^^^^^^^^^^^^^^^ entity.name.function
+//                     ^ meta.definition.method.groovy punctuation.definition.parameters.begin.groovy
+//                      ^^^^^^ storage.type.parameter
+//                             ^^^^^ variable.parameter
+//                                  ^ meta.definition.method.groovy punctuation.definition.parameters.end.groovy
+    println value
 }
 
 void voidCheck(String value) {
@@ -25,28 +51,35 @@ double interpretString(String value) {
 //                   ^ entity.name.function
 //                     ^ storage.type.parameter
 //                            ^ variable.parameter
-	return Double.parseDouble(value);
+    return Double.parseDouble(value);
 }
 
 defectiveSyntaxTest("hello")
-// <- meta.method
-//                ^ meta.method
-//                   ^ string.quoted.double
+// <- meta.function-call.identifier
+//^^^^^^^^^^^^^^^^^ meta.function-call.identifier
+//                 ^ meta.function-call.arguments.groovy punctuation.section.arguments.begin.groovy
+//                  ^^^^^^^ meta.function-call.arguments.groovy string.quoted.double.groovy
+//                         ^ meta.function-call.groovy punctuation.section.arguments.end.groovy
 
 voidCheck(123456)
-// <- meta.method
-//      ^ meta.method
-//         ^ constant.numeric
-
-interpretString("123.0")
-// <- meta.method
-//            ^ meta.method
-//               ^ string.quoted.double
+// <- meta.function-call.identifier.groovy variable.function.groovy
+//^^^^^^^ meta.function-call.identifier.groovy variable.function.groovy
+//       ^ meta.function-call.arguments.groovy punctuation.section.arguments.begin.groovy
+//        ^^^^^^ meta.function-call.arguments.groovy constant.numeric.groovy
+//              ^ meta.function-call.groovy punctuation.section.arguments.end.groovy
+//               ^ - meta.function-call
 
 chartHistogram([1,1,2,3])
-// <- meta.method
-//           ^ meta.method
-//              ^ constant.numeric
+// <- meta.function-call.identifier.groovy variable.function.groovy
+//^^^^^^^^^^^^ meta.function-call.identifier.groovy variable.function.groovy
+//            ^^^^^^^^^^ meta.function-call.arguments.groovy
+//            ^ punctuation.section.arguments.begin.groovy
+//             ^^^^^^^^^ meta.structure.groovy
+//             ^ punctuation.definition.structure.begin.groovy
+//              ^ constant.numeric.groovy
+//               ^ punctuation.definition.separator.groovy
+//                     ^ punctuation.definition.structure.end.groovy
+//                      ^ meta.function-call.groovy punctuation.section.arguments.end.groovy - meta.structure
 
 def greeting = "Hello ${true ? 'World' : 'Home'}"
 // <- storage.type.def
@@ -54,7 +87,7 @@ def greeting = "Hello ${true ? 'World' : 'Home'}"
 //           ^ keyword.operator.assignment
 //             ^ punctuation.definition.string.begin
 //             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ string.quoted.double
-//                    ^^ punctuation.section.embedded
+//                    ^^ punctuation.section.interpolation.begin
 //                    ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.groovy.embedded.source
 //                      ^^^^ constant.language
 //                           ^^^^^^^^^^^^^^^^^^ meta.evaluation.ternary
@@ -67,7 +100,7 @@ def greeting = "Hello ${true ? 'World' : 'Home'}"
 //                                       ^ punctuation.definition.string.begin
 //                                       ^^^^^^ string.quoted.single
 //                                            ^ punctuation.definition.string.end
-//                                             ^ punctuation.section.embedded
+//                                             ^ punctuation.section.interpolation.end
 //                                              ^ punctuation.definition.string.end
 //                                               ^ - string.quoted - invalid
 
