@@ -324,53 +324,7 @@ contexts:
     - include: keywords-angle-brackets
     - match: '(?={{path_lookahead}}\s*<)'
       push: global-modifier
-<<<<<<< HEAD
     - include: global-block-comments
-=======
-    # Take care of comments just before a function definition.
-    - match: /\*\*/
-      scope: comment.block.documentation.c++ punctuation.definition.comment.c++
-      push:
-        - match: \s*(?=\w)
-          set: global-modifier
-        - match: ""
-          pop: true
-    - match: /\*\*/
-      scope: comment.block.documentation.c punctuation.definition.comment.c
-
-    - match: /\*\[\[\[cog
-      scope: comment.block.c++ punctuation.definition.comment.c++
-      embed: scope:source.python
-      embed_scope: comment.block.c++
-      escape: '\]\]\]\*/'
-      escape_captures:
-        0: comment.block.c++ punctuation.definition.comment.c++
-    - match: /\*\*
-      scope: punctuation.definition.comment.c++
-      push:
-        - - match: \s*(?=\w)
-            set: global-modifier
-          - match: ""
-            pop: true
-        - - meta_scope: comment.block.documentation.c++
-          - match: \*/
-            scope: punctuation.definition.comment.c++
-            pop: true
-    - match: /\*
-      scope: punctuation.definition.comment.c++
-      push:
-        - - match: \s*(?=\w)
-            set: global-modifier
-          - match: ""
-            pop: true
-        - - meta_scope: comment.block.c++
-          - match: \*/
-            scope: punctuation.definition.comment.c++
-            pop: true
-          - match: ^\s*(\*)(?!/)
-            captures:
-              1: punctuation.definition.comment.c
->>>>>>> master
     - include: early-expressions
     - match: ^\s*\b(extern)(?=\s+"C(\+\+)?")
       scope: storage.modifier.c++
@@ -411,6 +365,16 @@ contexts:
         1: punctuation.definition.comment.begin.c
         2: meta.toc-list.banner.block.c
         3: punctuation.definition.comment.end.c
+    - match: /\*\[\[\[cog
+      scope: comment.block.c++ punctuation.definition.comment.c++
+      embed: scope:source.python
+      embed_scope: comment.block.c++
+      escape: '\]\]\]\*/'
+      escape_captures:
+        0: comment.block.c++ punctuation.definition.comment.c++
+    - match: /\*\*/
+      scope: comment.block.documentation.c++ punctuation.definition.comment.c++
+      push: global-block-comment-after
     # empty block comments
     - match: /\*\*+/
       scope: comment.block.empty.c punctuation.definition.comment.c

@@ -16,12 +16,9 @@ file_extensions:
   - mk
   - mak
   - make
-<<<<<<< HEAD
+  - makedefs
 
 hidden_file_extensions:
-=======
-  - makedefs
->>>>>>> master
   - GNUmakefile
   - Makefile
   - Makefile.am

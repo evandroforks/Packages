@@ -23,8 +23,7 @@
 				<key>name</key>
 				<string>TM_COMMENT_START_2</string>
 				<key>value</key>
-<<<<<<< HEAD
-				<string>@rem </string>
+				<string>rem </string>
 			</dict>
 			<dict>
 				<key>name</key>
@@ -36,10 +35,13 @@
 				<key>name</key>
 				<string>TM_COMMENT_START_3</string>
 				<key>value</key>
-				<string>:: </string>
-=======
-				<string>rem </string>
->>>>>>> master
+				<string>@rem </string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_CASE_INSENSITIVE_3</string>
+				<key>value</key>
+				<string>yes</string>
 			</dict>
 			<dict>
 				<key>name</key>

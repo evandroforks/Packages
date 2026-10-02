@@ -1,8 +1,4 @@
 [
-<<<<<<< HEAD
-	{ "caption": "-", "id": "diff" },
-	{ "caption": "Show Unsaved Changes…", "command": "diff_changes" }
-=======
     {
         "caption": "Local History",
         "id": "3_row",
@@ -21,5 +17,4 @@
             { "caption": "-", "id": "10_row" },
         ]
     }
->>>>>>> master
 ]

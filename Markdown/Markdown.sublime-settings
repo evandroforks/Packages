@@ -1,8 +1,5 @@
 {
-<<<<<<< HEAD
-    "set_unsaved_view_name_for_syntax": true,
-=======
     // Set to true to insert spaces when tab is pressed
 	"translate_tabs_to_spaces": true,
->>>>>>> master
+	"set_unsaved_view_name_for_syntax": true
 }

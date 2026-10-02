@@ -1,7 +1,6 @@
 # MacOS specific ignores
 .DS_Store
 
-<<<<<<< HEAD
 # excluded packages
 /Default/
 /User/
@@ -9,7 +8,6 @@
 # python cache files
 __pycache__/
 *.pyc
-=======
 
 # Ignore Everything
 # *
@@ -274,4 +272,3 @@ Whitespace
 WordingStatus
 WrapPlus
 X86Assembly
->>>>>>> master

@@ -137,17 +137,11 @@ rather than included in the default set of packages.
 
 ## Missing Packages
 
-<<<<<<< HEAD
 This repository only contains syntax-definition-focused packages.
 Notably, packages such as `Default` and `Theme - Default` are not included.
 
 [packages]: https://www.sublimetext.com/docs/packages.html
 [Package Control]: https://packagecontrol.io/
-=======
-This repository only contains syntax-definition-focused packages. Notably, packages such as *Default* and *Theme - Default* are not included.
-
 
 ## License
 See the `LICENSE` file under this repository.
-
->>>>>>> master
